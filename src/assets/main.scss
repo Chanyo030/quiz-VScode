@@ -1,0 +1,13 @@
+/* 全域的 CSS 設定檔 */
+
+// bootstrap 的 scss 檔案
+@import "../../node_modules/bootstrap/scss/functions";
+
+// 我們自己的 bootstrap 設定檔
+@import "../assets/stylesheet/helper/variables";
+
+// bootstrap 核心檔案
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+// layout
+@import "./stylesheet/layout/layout";

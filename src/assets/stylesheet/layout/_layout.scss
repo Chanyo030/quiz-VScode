@@ -1,0 +1,72 @@
+@import "../../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+body {
+    margin: 0;
+}
+
+.sticky-footer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.manageAddAndUpdateDiv1 {
+    width: 600px;
+    height: 600px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.manageAddAndUpdateDiv2 {
+    height: 550px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    bottom: 35px;
+}
+
+.manageAddAndUpdate {
+    position: absolute;
+    top: 70px;
+    left: 180px;
+}
+
+#quizTitleBtn {
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.manageA,
+.quizA {
+    color: black;
+}
+
+.dropdown-menu {
+    z-index: 1 !important;
+}
+
+.modalTitle {
+    position: relative;
+    top: 40px;
+}
+
+#modalBtnDiv {
+    position: absolute;
+    top: 150px;
+
+    #modalBtn1 {
+        position: relative;
+        right: 45px;
+    }
+
+    #modalBtn2 {
+        position: relative;
+        left: 45px;
+    }
+}
