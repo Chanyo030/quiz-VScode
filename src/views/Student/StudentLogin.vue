@@ -2,7 +2,7 @@
 
 <script>
 import { RouterLink } from 'vue-router';
-import Footer from "../components/Footer.vue";
+import Footer from "../../components/Footer.vue";
 
 export default {
     components: {
@@ -19,11 +19,11 @@ export default {
         </div>
 
         <div class="studentCard">
-            <img class="img1" src="../../public/Faculty_Headshot_Thumbnail-removebg-preview.png" alt="user">
-            <img class="img2" src="../../public/191059.png" alt="data">
-            <img class="img3" src="../../public/191059.png" alt="data">
-            <img class="img4" src="../../public/191059.png" alt="data">
-            <img class="img5" src="../../public/191059.png" alt="data">
+            <img class="img1" src="../../../public/Faculty_Headshot_Thumbnail-removebg-preview.png" alt="user">
+            <img class="img2" src="../../../public/191059.png" alt="data">
+            <img class="img3" src="../../../public/191059.png" alt="data">
+            <img class="img4" src="../../../public/191059.png" alt="data">
+            <img class="img5" src="../../../public/191059.png" alt="data">
             <div class="input-group mb-3 studentId">
                 <span class="input-group-text" id="basic-addon1">學號</span>
                 <input type="text" class="form-control" id="inputId" placeholder="ID" aria-label="UserId"

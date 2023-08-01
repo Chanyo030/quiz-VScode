@@ -1,9 +1,8 @@
-<!-- 學員註冊系統 -->
+<!-- 學員帳號變更系統 -->
 
 <script>
-import StudentAddAndUpdate from "../components/StudentAddAndUpdate.vue"
-import Footer from "../components/Footer.vue"
-
+import StudentAddAndUpdate from "../../components/StudentAddAndUpdate.vue"
+import Footer from "../../components/Footer.vue";
 export default {
     components: {
         StudentAddAndUpdate,
@@ -17,13 +16,13 @@ export default {
 
         <div id="quizHead">
             <h2 id="headText1">Java 全端培訓班</h2>
-            <h2 id="headText2">學員帳號創建系統</h2>
+            <h2 id="headText2">學員帳號變更系統</h2>
         </div>
 
-        <div class="studentSignUpCard">
+        <div class="studentUpdateCard">
 
             <StudentAddAndUpdate></StudentAddAndUpdate>
-            <button type="button" class="btn btn-outline-secondary" id="studentSignUpBtn">創建</button>
+            <button type="button" class="btn btn-outline-secondary" id="studentUpdateBtn">變更</button>
 
         </div>
 
@@ -32,7 +31,7 @@ export default {
     </div>
 </template>
 <style lang="scss">
-.studentSignUpCard {
+.studentUpdateCard {
 
     width: 50%;
     height: 800px;
@@ -44,7 +43,7 @@ export default {
     margin-bottom: 100px;
     padding-top: 5px;
 
-    #studentSignUpBtn {
+    #studentUpdateBtn {
         position: relative;
         left: 46%;
         top: 60px;

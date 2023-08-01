@@ -1,7 +1,7 @@
 <!-- 管理人員總覽 權限A -->
 
 <script>
-import Footer from "../components/Footer.vue";
+import Footer from "../../components/Footer.vue";
 
 export default {
     components: {

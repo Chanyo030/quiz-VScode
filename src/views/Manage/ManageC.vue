@@ -1,8 +1,8 @@
 <!-- 管理者 權限C -->
 
 <script>
-import Footer from "../components/Footer.vue";
-import Modal from "../components/Modal.vue";
+import Footer from "../../components/Footer.vue";
+import Modal from "../../components/Mockexam/Modal.vue";
 
 
 export default {

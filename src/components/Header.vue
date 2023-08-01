@@ -1,8 +1,21 @@
 <script>
+import {RouterLink} from 'vue-router';
+export default{
+    data(){
+        return{
 
+        }
+    },
+    components:{
+        RouterLink,
+    }
+}
 </script>
-<template></template>
-<style lang="scss">
+<template>
+
+   
+</template>
+<style lang="scss" >
 #quizHead {
     // min-width: 1800px;
     height: 150px;

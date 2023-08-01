@@ -1,7 +1,7 @@
 <!-- 學員資料 -->
 
 <script>
-import Footer from "../components/Footer.vue";
+import Footer from "../../components/Footer.vue";
 export default {
     components: {
         Footer

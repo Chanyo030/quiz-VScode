@@ -1,7 +1,7 @@
 <!-- 學生個人資料新增 -->
 
 <script>
-import Footer from "../components/Footer.vue";
+import Footer from "../../components/Footer.vue";
 
 // 日期清空
 export default {
@@ -31,11 +31,11 @@ export default {
         <div class="studentPersonalInformationDiv">
             <div id="studentPersonalInformationCardImg">
                 <img class="studentPersonalInformationImg1"
-                    src="../../public/Faculty_Headshot_Thumbnail-removebg-preview.png" alt="user">
-                <img class="studentPersonalInformationImg2" src="../../public/191059.png" alt="data">
-                <img class="studentPersonalInformationImg3" src="../../public/191059.png" alt="data">
-                <img class="studentPersonalInformationImg4" src="../../public/191059.png" alt="data">
-                <img class="studentPersonalInformationImg5" src="../../public/191059.png" alt="data">
+                    src="../../../public/Faculty_Headshot_Thumbnail-removebg-preview.png" alt="user">
+                <img class="studentPersonalInformationImg2" src="../../../public/191059.png" alt="data">
+                <img class="studentPersonalInformationImg3" src="../../../public/191059.png" alt="data">
+                <img class="studentPersonalInformationImg4" src="../../../public/191059.png" alt="data">
+                <img class="studentPersonalInformationImg5" src="../../../public/191059.png" alt="data">
 
             </div>
 

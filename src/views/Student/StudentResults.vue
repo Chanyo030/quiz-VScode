@@ -1,7 +1,7 @@
 <!-- 學員個人成績查詢 -->
 
 <script>
-import Footer from "../components/Footer.vue";
+import Footer from "../../components/Footer.vue";
 
 
 export default {

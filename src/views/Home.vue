@@ -2,7 +2,7 @@
 
 <script>
 import { RouterLink } from "vue-router"
-import Header from "../components/Header.vue";
+import Header from "../components/Header.vue"
 import Footer from "../components/Footer.vue";
 
 export default {
@@ -12,7 +12,7 @@ export default {
         Header,
         Footer
 
-    },
+    }
 }
 
 </script>
@@ -23,7 +23,7 @@ export default {
         <Header></Header>
         <div id="quizHead">
             <h2 id="headText1">ICAICVT</h2>
-            <h2 id="headText2">國際產訓研究中心</h2>
+            <h2 id="headText2" >國際產訓研究中心</h2>
         </div>
 
         <div class="javaQuiz">

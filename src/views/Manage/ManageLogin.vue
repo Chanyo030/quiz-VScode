@@ -1,7 +1,7 @@
 <!-- 管理者登入系統 -->
 
 <script>
-import Footer from "../components/Footer.vue";
+import Footer from "../../components/Footer.vue";
 
 export default {
     components: {
@@ -18,11 +18,11 @@ export default {
         </div>
 
         <div class="manageGearCard">
-            <img class="manageGear1" src="../../public/removebg-preview.png" alt="user">
-            <img class="manageGear2" src="../../public/191059.png" alt="data">
-            <img class="manageGear3" src="../../public/191059.png" alt="data">
-            <img class="manageGear4" src="../../public/191059.png" alt="data">
-            <img class="manageGear5" src="../../public/191059.png" alt="data">
+            <img class="manageGear1" src="../../../public/removebg-preview.png" alt="user">
+            <img class="manageGear2" src="../../../public/191059.png" alt="data">
+            <img class="manageGear3" src="../../../public/191059.png" alt="data">
+            <img class="manageGear4" src="../../../public/191059.png" alt="data">
+            <img class="manageGear5" src="../../../public/191059.png" alt="data">
             <div class="input-group mb-3 manageIdDiv">
                 <span class="input-group-text" id="manageId">編號</span>
                 <input type="text" class="form-control" id="manageIdInput" placeholder="ID" aria-label="UserId"

@@ -1,8 +1,8 @@
 <!-- 創建管理者 權限B -->
 
 <script>
-import ManageAddAndUpdate from "../components/ManageAddAndUpdate.vue"
-import Footer from "../components/Footer.vue"
+import ManageAddAndUpdate from "../../components/ManageAddAndUpdate.vue"
+import Footer from "../../components/Footer.vue";
 
 export default {
     components: {

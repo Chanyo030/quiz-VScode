@@ -7,10 +7,14 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
+// 安裝 pinia
+import { createPinia } from 'pinia';
+
 library.add(fas);
 
 // 執行Vue環境
 const app = createApp(App)
+const pinia = createPinia();
 
 app.component('font-awesome-icon', FontAwesomeIcon);
 
@@ -25,6 +29,7 @@ import './assets/main.scss'
 
 // 安裝綁定套件
 app.use(router)
+app.use(pinia)
 
 // mount 一定要放在最後面
 app.mount('#app')

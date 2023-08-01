@@ -15,6 +15,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.0",
+    "pinia": "^2.1.6",
     "scss": "^0.2.4",
     "vue": "^3.3.2",
     "vue-router": "^4.2.2"

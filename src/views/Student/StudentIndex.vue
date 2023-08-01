@@ -1,9 +1,9 @@
 <!-- 學生考試主頁 -->
 
 <script>
-import Footer from "../components/Footer.vue";
-import Modal from "../components/Modal.vue";
-import ClassifyTable from "../components/ClassifyTable.vue";
+import Footer from "../../components/Footer.vue";
+import Modal from "../../components/Mockexam/Modal.vue";
+import ClassifyTable from "../../components/ClassifyTable.vue";
 
 export default {
     components: {

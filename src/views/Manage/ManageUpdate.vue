@@ -1,8 +1,8 @@
-<!-- 管理者變更 權限C -->
+<!-- 管理者變更 權限A -->
 
 <script>
-import ManageAddAndUpdate from "../components/ManageAddAndUpdate.vue"
-import Footer from "../components/Footer.vue"
+import ManageAddAndUpdate from "../../components/ManageAddAndUpdate.vue"
+import Footer from "../../components/Footer.vue";
 
 export default {
     components: {
@@ -26,10 +26,10 @@ export default {
                 <ManageAddAndUpdate></ManageAddAndUpdate>
 
                 <div class="manageAddAndUpdateBtnDiv">
-                    <RouterLink to="/manageC"><button type="button" class="btn btn-outline-secondary"
+                    <RouterLink to="/manage"><button type="button" class="btn btn-outline-secondary"
                             id="manageAddAndUpdateBtn1">取消</button></RouterLink>
                     <button type="button" class="btn btn-outline-secondary" id="manageAddAndUpdateBtn2">確認</button>
-                    <RouterView />
+
                 </div>
             </div>
 
