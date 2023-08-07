@@ -1,11 +1,17 @@
 <!-- 課務管理系統 權限A -->
 
 <script>
-import Footer from "../components/Footer.vue";
-
+import Footer from "../../../components/Footer.vue";
+import Header from "../../../components/Header.vue";
 export default {
+    data(){
+        return{
+            titleText:"課程管理系統",
+        }
+    },
     components: {
-        Footer
+        Footer,
+        Header,
     },
     mounted() {
         this.clearDateInput
@@ -20,17 +26,14 @@ export default {
 <template>
     <div class="sticky-footer">
 
-        <div id="quizHead">
-            <h2 id="headText1">Java 全端培訓班</h2>
-            <h2 id="headText2">課務管理系統</h2>
-        </div>
+        <Header v-model:secondTitle="titleText" />
 
         <div class="classHideCard">
-            <img class="classHideImg1" src="../../public/certificate-removebg-preview.png" alt="user">
-            <img class="classHideImg2" src="../../public/191059.png" alt="data">
-            <img class="classHideImg3" src="../../public/191059.png" alt="data">
-            <img class="classHideImg4" src="../../public/191059.png" alt="data">
-            <img class="classHideImg5" src="../../public/191059.png" alt="data">
+            <img class="classHideImg1" src="../../../../public/certificate-removebg-preview.png" alt="user">
+            <img class="classHideImg2" src="../../../../public/191059.png" alt="data">
+            <img class="classHideImg3" src="../../../../public/191059.png" alt="data">
+            <img class="classHideImg4" src="../../../../public/191059.png" alt="data">
+            <img class="classHideImg5" src="../../../../public/191059.png" alt="data">
 
             <div class="input-group mb-3" id="classHideDiv">
                 <span class="input-group-text" id="basic-addon1">上課地點 / 梯次</span>

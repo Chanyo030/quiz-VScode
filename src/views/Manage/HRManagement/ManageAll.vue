@@ -1,22 +1,23 @@
 <!-- 管理人員總覽 權限A -->
 
 <script>
-import Footer from "../../components/Footer.vue";
-
+import Footer from "../../../components/Footer.vue";
+import Header from "../../../components/Header.vue";
 export default {
+    data(){
+        return{
+            titleText:"管理人員總覽",
+        }
+    },
     components: {
-        Footer
+        Footer,
+        Header,
     }
 }
 </script>
 <template>
     <div class="sticky-footer">
-        <header>
-            <div id="quizHead">
-                <h2 id="headText1">Java 全端培訓班</h2>
-                <h2 id="headText2">管理人員總覽</h2>
-            </div>
-        </header>
+        <Header v-model:secondTitle="titleText" />
 
         <div class="manageSearchDiv">
             <div class="input-group flex-nowrap" id="manageSearchIdDiv">

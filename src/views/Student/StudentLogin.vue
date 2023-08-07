@@ -1,22 +1,33 @@
-<!-- 學員登入系統 -->
+    <!-- 學員登入系統 -->
 
 <script>
 import { RouterLink } from 'vue-router';
 import Footer from "../../components/Footer.vue";
+import Header from "../../components/Header.vue";
 
 export default {
+    data() {
+        return {
+            titleText:"學員登入系統"
+        }
+    },
+    methods:{
+        goBack(){
+            this.$router.push("/")
+        },
+        Login(){
+            this.$router.push('/studentIndex')
+        }
+    },
     components: {
-        Footer
+        Footer,
+        Header
     }
 }
 </script>
 <template>
     <div class="sticky-footer">
-
-        <div id="quizHead">
-            <h2 id="headText1">Java 全端培訓班</h2>
-            <h2 id="headText2">學員登入系統</h2>
-        </div>
+        <Header  v-bind:LoginTitle="this.titleText" />
 
         <div class="studentCard">
             <img class="img1" src="../../../public/Faculty_Headshot_Thumbnail-removebg-preview.png" alt="user">
@@ -42,9 +53,8 @@ export default {
                     aria-describedby="basic-addon1">
             </div>
 
-
-            <RouterLink to="/studentIndex"><button type="button" class="btn btn-outline-secondary" id="btn1">登入</button>
-            </RouterLink>
+            <button class="btn btn-outline-secondary" id="btn1" @click="goBack">返回</button>
+            <button type="button" class="btn btn-outline-secondary" id="btn2" @click="Login">登入</button>
             <RouterView />
         </div>
 
@@ -128,7 +138,12 @@ export default {
 
 #btn1 {
     position: relative;
-    left: 46%;
+    left: 40%;
+    top: 65px;
+}
+#btn2 {
+    position: relative;
+    left: 45%;
     top: 65px;
 }
 </style>

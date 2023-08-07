@@ -1,21 +1,24 @@
 <!-- 創建管理者 權限A -->
 
 <script>
-import Footer from "../../components/Footer.vue";
-
+import Footer from "../../../components/Footer.vue";
+import Header from "../../../components/Header.vue";
 export default {
+    data(){
+        return{
+            titleText:"人員創建系統",
+        }
+    },
     components: {
-        Footer
+        Footer,
+        Header,
     }
 }
 </script>
 <template>
     <div class="sticky-footer">
 
-        <div id="quizHead">
-            <h2 id="headText1">Java 全端培訓班</h2>
-            <h2 id="headText2">人員創建系統</h2>
-        </div>
+        <Header v-model:secondTitle="titleText" />
 
         <div class="manageAddAndUpdateDiv1">
             <div class="manageAddAndUpdateDiv2">

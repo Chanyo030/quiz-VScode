@@ -1,19 +1,22 @@
 <!-- 管理者 權限B -->
 
 <script>
-import Footer from "../../components/Footer.vue";
-import Modal from "../../components/Mockexam/Modal.vue";
+import Footer from "../../../components/Footer.vue";
+import Header from "../../../components/Header.vue";
+import Modal from "../../../components/Mockexam/Modal.vue";
 
 
 export default {
     components: {
         Footer,
         Modal,
+        Header,
     },
 
     data() {
         return {
-            isShow: false
+            isShow: false,
+            titleText:"管理系統"
         }
     },
 
@@ -29,8 +32,7 @@ export default {
 <template>
     <div class="sticky-footer">
         <div id="manageBHead">
-            <h2 id="manageBHeadText1">Java 全端培訓班</h2>
-            <h2 id="manageBHeadText2">管理系統</h2>
+            <Header v-model:secondTitle="titleText" />
 
             <ul class="nav nav-pills" id="manageBNavsAndTabs">
 

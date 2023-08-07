@@ -7,14 +7,20 @@ import Footer from "../../components/Footer.vue";
 export default {
     components: {
         Footer
+    },
+    methods:{
+        backIndex(){
+            this.$router.push('/studentIndex')
+        }    
     }
+    
 }
 </script>
 <template>
     <div class="sticky-footer">
         <header>
             <div id="quizHead">
-                <h2 id="headText1">Java 全端培訓班</h2>
+                <h2 id="headText1" @click="backIndex">Java 全端培訓班</h2>
                 <h2 id="headText2">成績查詢</h2>
             </div>
         </header>

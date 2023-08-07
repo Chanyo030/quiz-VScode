@@ -1,12 +1,19 @@
 <!-- 學員帳號變更系統 -->
 
 <script>
-import StudentAddAndUpdate from "../../components/StudentAddAndUpdate.vue"
-import Footer from "../../components/Footer.vue";
+import StudentAddAndUpdate from "../../../components/StudentAddAndUpdate.vue"
+import Footer from "../../../components/Footer.vue";
+import Header from "../../../components/Header.vue";
 export default {
+    data() {
+        return {
+            titleText: "學員成績總覽",
+        }
+    },
     components: {
         StudentAddAndUpdate,
-        Footer
+        Footer,
+        Header,
     }
 }
 
@@ -14,10 +21,7 @@ export default {
 <template>
     <div class="sticky-footer">
 
-        <div id="quizHead">
-            <h2 id="headText1">Java 全端培訓班</h2>
-            <h2 id="headText2">學員帳號變更系統</h2>
-        </div>
+        <Header v-model:secondTitle="titleText" />
 
         <div class="studentUpdateCard">
 

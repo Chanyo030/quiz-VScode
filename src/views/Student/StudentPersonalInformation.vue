@@ -16,6 +16,9 @@ export default {
     methods: {
         clearInput() {
             this.empty = '';
+        },
+        backIndex(){
+            this.$router.push('/StudentIndex')
         }
     }
 }
@@ -23,7 +26,7 @@ export default {
 <template>
     <div class="sticky-footer">
         <div id="quizHead">
-            <h2 id="headText1">Java 全端培訓班</h2>
+            <h2 id="headText1" @click="backIndex">Java 全端培訓班</h2>
             <h2 id="headText2">帳號設定</h2>
         </div>
 
@@ -221,6 +224,8 @@ export default {
     margin-top: 100px;
     margin-bottom: 100px;
     padding-top: 5px;
+
+    
 
     #studentPersonalInformationCardImg {
         position: relative;

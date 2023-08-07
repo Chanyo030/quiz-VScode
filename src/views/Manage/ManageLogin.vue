@@ -2,20 +2,32 @@
 
 <script>
 import Footer from "../../components/Footer.vue";
+import Header from "../../components/Header.vue";
 
 export default {
+    data() {
+        return {
+            titleText:"人員登入系統"
+        }
+    },
+    methods: {
+        goBack() {
+            this.$router.push("/")
+        },
+        Login(){
+            this.$router.push("/manage")
+        }
+    },
     components: {
-        Footer
+        Footer,
+        Header,
     }
 }
 </script>
 <template>
     <div class="sticky-footer">
 
-        <div id="quizHead">
-            <h2 id="headText1">Java 全端培訓班</h2>
-            <h2 id="headText2">人員登入系統</h2>
-        </div>
+        <Header v-bind:LoginTitle="titleText" />
 
         <div class="manageGearCard">
             <img class="manageGear1" src="../../../public/removebg-preview.png" alt="user">
@@ -42,8 +54,8 @@ export default {
             </div>
 
             <div id="manageBtnDiv">
-                <RouterLink to="/manage"><button type="button" class="btn btn-outline-secondary" id="logInBtn">登入</button>
-                </RouterLink>
+                <button class="btn btn-outline-secondary" id="logInBtn1" @click="goBack">返回</button>
+                <button type="button" class="btn btn-outline-secondary" id="logInBtn2" @click="Login">登入</button>
             </div>
 
         </div>
@@ -123,14 +135,19 @@ export default {
 }
 
 #manageBtnDiv {
-
     position: relative;
     justify-content: center;
     align-items: center;
 
-    #logInBtn {
+    #logInBtn1 {
         position: absolute;
-        left: 46%;
+        left: 40%;
+        top: 80px;
+    }
+
+    #logInBtn2{
+        position: absolute;
+        left: 50%;
         top: 80px;
     }
 

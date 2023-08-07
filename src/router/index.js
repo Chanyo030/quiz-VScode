@@ -2,32 +2,38 @@
 
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
-import TrainingEnd from "../views/TrainingEnd.vue";
-import AddQuizBook from "../views/AddQuizBook.vue";
+import TrainingEnd from "../views/Manage/Course/TrainingEnd.vue";
+import AddQuizBook from "../views/Manage/Course/AddQuizBook.vue";
 
-// Manage - 11 個
+// Manage - 2 個
 import ManageLogin from "../views/Manage/ManageLogin.vue";
-import ManageAdd from "../views/Manage/ManageAdd.vue";
-import ManageUpdate from "../views/Manage/ManageUpdate.vue";
 import Manage from "../views/Manage/Manage.vue";
-import ManageAll from "../views/Manage/ManageAll.vue";
-import ManageAddAuthority from "../views/Manage/ManageAddAuthority.vue";
-// ManageB
-import ManageB from "../views/Manage/ManageB.vue";
-import ManageBAdd from "../views/Manage/ManageBAdd.vue";
-import ManageBUpdate from "../views/Manage/ManageBUpdate.vue";
-// ManageC
-import ManageC from "../views/Manage/ManageC.vue";
-import ManageCUpdate from "../views/Manage/ManageCUpdate.vue";
 
-//Student - 8 個
+//HRManagement - 4個
+import ManageAdd from "../views/Manage/HRManagement/ManageAdd.vue";
+import ManageAddAuthority from "../views/Manage/HRManagement/ManageAddAuthority.vue";
+import ManageUpdate from "../views/Manage/HRManagement/ManageUpdate.vue";
+import ManageAll from "../views/Manage/HRManagement/ManageAll.vue";
+
+// ManageB - 3個
+import ManageB from "../views/Manage/ManagerB/ManageB.vue";
+import ManageBAdd from "../views/Manage/ManagerB/ManageBAdd.vue";
+import ManageBUpdate from "../views/Manage/ManagerB/ManageBUpdate.vue";
+
+// ManageC - 2個
+import ManageC from "../views/Manage/ManagerC/ManageC.vue";
+import ManageCUpdate from "../views/Manage/ManagerC/ManageCUpdate.vue";
+
+// Manage/StudentArraris  - 4個
+import StudentSignUp from "../views/Manage/StudentAffaris/StudentSignUp.vue";
+import StudentUpdate from "../views/Manage/StudentAffaris/StudentUpdate.vue";
+import StudentInformation from "../views/Manage/StudentAffaris/StudentInformation.vue";
+import StudentResultsAll from "../views/Manage/StudentAffaris/StudentResultsAll.vue";
+
+//Student - 4 個
 import StudentLogin from "../views/Student/StudentLogin.vue";
 import StudentIndex from "../views/Student/StudentIndex.vue";
-import StudentSignUp from "../views/Student/StudentSignUp.vue";
-import StudentUpdate from "../views/Student/StudentUpdate.vue";
-import StudentInformation from "../views/Student/StudentInformation.vue";
 import StudentResults from "../views/Student/StudentResults.vue";
-import StudentResultsAll from "../views/Student/StudentResultsAll.vue";
 import StudentPersonalInformation from "../views/Student/StudentPersonalInformation.vue";
 
 const router = createRouter({
@@ -56,8 +62,8 @@ const router = createRouter({
             name: "manageAdd",
             component: ManageAdd,
         },
-        
-         // A, Update
+
+        // A, Update
         {
             path: "/manageUpdate",
             name: "manageUpdate",
@@ -113,7 +119,7 @@ const router = createRouter({
             name: "manageBUpdate",
             component: ManageBUpdate,
         },
-         // B, Add
+        // B, Add
         {
             path: "/manageBAdd",
             name: "manageBAdd",
@@ -228,7 +234,7 @@ const router = createRouter({
                 },
             ],
         },
-        // ----- otherSystem ------
+        // ----- Course ------
         // trainingEnd
         {
             path: "/trainingEnd",
