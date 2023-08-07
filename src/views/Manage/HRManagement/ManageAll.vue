@@ -12,12 +12,17 @@ export default {
     components: {
         Footer,
         Header,
+    },
+    methods:{
+        goBack(){
+            this.$router.push("/manage")
+        }
     }
 }
 </script>
 <template>
     <div class="sticky-footer">
-        <Header v-model:secondTitle="titleText" />
+        <Header v-model:secondTitle="titleText" @home="goBack"/>
 
         <div class="manageSearchDiv">
             <div class="input-group flex-nowrap" id="manageSearchIdDiv">

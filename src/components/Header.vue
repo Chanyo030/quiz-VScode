@@ -3,12 +3,13 @@ import { RouterLink } from 'vue-router';
 import Modal from '../components/Mockexam/Modal.vue';
 import { mapState, mapActions } from 'pinia';
 import LoginState from '../stores/LoginState';
+import { faTextHeight } from '@fortawesome/free-solid-svg-icons';
 export default {
     data() {
         return {
-            showManageList: false,
+            showManageList: true,
             showStudentList: false,
-            showHomeTitle: true,
+            showHomeTitle: false,
             showLoginTitle: false,
         }
     },
@@ -48,6 +49,16 @@ export default {
                 this.showLoginTitle = false;
             }
         },
+        judgeHome(){
+            if( this.$route.path == "/"){
+                this.showManageList = false;
+                this.showStudentList = false;
+                this.showHomeTitle = true;
+                this.showLoginTitle = false;
+            }else{
+                this.showHomeTitle = false;
+            }
+        },
         studentLogout(){
             this.switchModal();
             this.$router.push('/studentLogin')
@@ -55,15 +66,13 @@ export default {
         manageLogout(){
             this.switchModal();
             this.$router.push('/manageLogin')
-        }
+        },
     },
     props: [
         'secondTitle',
         'homeTitle',
         'homeTitle2',
         'LoginTitle',
-        "manageHome",
-        "studentHome",
     ],
     components: {
         RouterLink,
@@ -77,6 +86,7 @@ export default {
         this.judgeManage();
         this.judgeLogin();
         this.judgeStudent();
+        this.judgeHome();
     }
 }
 </script>
@@ -86,7 +96,7 @@ export default {
     <div class="manageQuizHead">
         <!-- Manage & Student -->
         <div class="manageList" v-if="showHomeTitle === false">
-            <font-awesome-icon id="manageicon" :icon="['fab', 'java']" />
+            <font-awesome-icon id="manageicon" :icon="['fab', 'java']" @click="$emit('home')" />
             <h2 class="HeadText1">Java 全端培訓班</h2>
             <h2 class="HeadText2">{{ secondTitle }}</h2>
         </div>

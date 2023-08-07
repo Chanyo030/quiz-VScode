@@ -2,12 +2,18 @@
 
 <script>
 import Footer from "../../components/Footer.vue";
+import Header from "../../components/Header.vue";
 
 // 日期清空
 export default {
-
+    data(){
+        return{
+            titleText:"學員帳號設定"
+        }
+    },
     components: {
-        Footer
+        Footer,
+        Header
     },
 
     mounted() {
@@ -18,7 +24,7 @@ export default {
             this.empty = '';
         },
         backIndex(){
-            this.$router.push('/StudentIndex')
+            this.$router.push('/studentIndex')
         }
     }
 }
@@ -26,8 +32,7 @@ export default {
 <template>
     <div class="sticky-footer">
         <div id="quizHead">
-            <h2 id="headText1" @click="backIndex">Java 全端培訓班</h2>
-            <h2 id="headText2">帳號設定</h2>
+            <Header v-bind:secondTitle="titleText" @home="backIndex" />
         </div>
 
 

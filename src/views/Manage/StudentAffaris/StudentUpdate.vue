@@ -7,13 +7,18 @@ import Header from "../../../components/Header.vue";
 export default {
     data() {
         return {
-            titleText: "學員成績總覽",
+            titleText: "學員帳號變更",
         }
     },
     components: {
         StudentAddAndUpdate,
         Footer,
         Header,
+    },
+    methods:{
+        goBack(){
+            this.$router.push("/manage")
+        }
     }
 }
 
@@ -21,7 +26,7 @@ export default {
 <template>
     <div class="sticky-footer">
 
-        <Header v-model:secondTitle="titleText" />
+        <Header v-model:secondTitle="titleText" @home="goBack"/>
 
         <div class="studentUpdateCard">
 

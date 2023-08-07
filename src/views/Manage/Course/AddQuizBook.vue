@@ -31,6 +31,10 @@ export default {
                 reader.readAsDataURL(file);
             }
         },
+        goBack(){
+            this.$router.push("/manage")
+        }
+    
     },
 };
 </script>
@@ -38,7 +42,7 @@ export default {
 <template>
     <div class="sticky-footer">
 
-        <Header v-model:secondTitle="titleText" />
+        <Header v-model:secondTitle="titleText" @home="goBack"/>
 
         <div class="quizBook">
             <div class="photo">

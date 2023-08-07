@@ -19,6 +19,9 @@ export default {
     methods: {
         clearDateInput() {
             this.trainingEndDate = '';
+        },
+        goBack(){
+            this.$router.push("/manage")
         }
     }
 }
@@ -26,7 +29,7 @@ export default {
 <template>
     <div class="sticky-footer">
 
-        <Header v-model:secondTitle="titleText" />
+        <Header v-model:secondTitle="titleText" @home="goBack" />
 
         <div class="classHideCard">
             <img class="classHideImg1" src="../../../../public/certificate-removebg-preview.png" alt="user">

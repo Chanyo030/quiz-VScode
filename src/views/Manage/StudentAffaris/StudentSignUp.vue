@@ -26,7 +26,7 @@ export default {
 </script>
 <template>
     <div class="sticky-footer">
-        <Header v-model:secondTitle="titleText" />
+        <Header v-model:secondTitle="titleText" @home="goBack"/>
 
         <div class="studentSignUpCard">
 
