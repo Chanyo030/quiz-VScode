@@ -6,6 +6,8 @@ import Footer from "../../components/Footer.vue";
 import Modal from "../../components/Mockexam/Modal.vue";
 import ClassifyTable from "../../components/ClassifyTable.vue";
 import Header from '../../components/Header.vue';
+import { mapState,mapActions } from "pinia";
+import LoginState from "../../stores/LoginState";
 
 export default {
     components: {
@@ -22,17 +24,28 @@ export default {
         }
     },
     computed:{
-        
+        ...mapState(LoginState,["showName"])
     },
     methods: {
-        
+        ...mapActions(LoginState,["getInfo"]),
+        backIndex() {
+            this.$router.push('/studentIndex')
+        },
+    },
+    updated(){
+        // 避免重新整理時，資料無法顯示
+        if(sessionStorage.getItem("userId") !== null){
+            let id =JSON.parse(sessionStorage.getItem("userId"));
+            console.log(id)
+            this.getInfo(id)
+        }
     }
 }
 </script>
 <template>
     <div class="sticky-footer">
         <div id="quizHead">
-            <Header v-bind:secondTitle="titleText" />
+            <Header v-bind:secondTitle="titleText" v-bind:userName="showName" @home="backIndex"/>
         </div>
 
         <ClassifyTable />

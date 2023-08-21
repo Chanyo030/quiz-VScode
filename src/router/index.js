@@ -168,7 +168,16 @@ const router = createRouter({
                     path: "black",
                     component: () => import("../components/Mockexam/Black.vue"),
                 },
+                {
+                    path:"blue",
+                    component: () => import("../components/Mockexam/Blue.vue"),
+                }
             ],
+        },
+        {
+            path:"/examPage",
+            name:"examPage",
+            component: () => import("../components/Mockexam/examPage.vue"),
         },
         // PersonalInformation
         {

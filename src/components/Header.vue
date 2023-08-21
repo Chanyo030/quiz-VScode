@@ -30,7 +30,7 @@ export default {
             }
         },
         judgeStudent() {
-            if (this.$route.path == "/studentIndex") {
+            if (this.$route.path.includes("studentIndex")) {
                 this.showManageList = false;
                 this.showStudentList = true;
                 this.showHomeTitle = false;
@@ -73,14 +73,14 @@ export default {
         'homeTitle',
         'homeTitle2',
         'LoginTitle',
+        'userName',
     ],
     components: {
         RouterLink,
         Modal,
     },
     updated() {
-        this.judgeManage();
-        this.judgeLogin();
+
     },
     created() {
         this.judgeManage();
@@ -218,7 +218,7 @@ export default {
         <!-- Student -->
         <ul class="nav nav-pills" id="quizNavsAndTabs" v-if="showStudentList === true">
 
-            <li id="Name">姓名</li>
+            <li id="Name">{{userName}}</li>
 
             <!-- 成績查詢 -->
             <li class="nav-item dropdown" id="quizLi2">
