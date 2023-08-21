@@ -1,15 +1,17 @@
 <script>
-import Footer from "../components/Footer.vue";
-
+import Footer from "../../../components/Footer.vue";
+import Header from "../../../components/Header.vue";
 export default {
 
     components: {
-        Footer
+        Footer,
+        Header,
     },
 
     data() {
         return {
             images: [],
+            titleText:"新增題本",
         };
     },
     methods: {
@@ -29,6 +31,10 @@ export default {
                 reader.readAsDataURL(file);
             }
         },
+        goBack(){
+            this.$router.push("/manage")
+        }
+    
     },
 };
 </script>
@@ -36,10 +42,7 @@ export default {
 <template>
     <div class="sticky-footer">
 
-        <div id="quizHead">
-            <h2 id="headText1">Java 全端培訓班</h2>
-            <h2 id="headText2">題庫登入系統</h2>
-        </div>
+        <Header v-model:secondTitle="titleText" @home="goBack"/>
 
         <div class="quizBook">
             <div class="photo">

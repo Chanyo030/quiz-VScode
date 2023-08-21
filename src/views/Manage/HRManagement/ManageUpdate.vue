@@ -1,32 +1,41 @@
-<!-- 創建管理者 權限B -->
+<!-- 管理者變更 權限A -->
 
 <script>
-import ManageAddAndUpdate from "../../components/ManageAddAndUpdate.vue"
-import Footer from "../../components/Footer.vue";
-
+import ManageAddAndUpdate from "../../../components/ManageAddAndUpdate.vue"
+import Footer from "../../../components/Footer.vue";
+import Header from "../../../components/header.vue";
 export default {
+    data(){
+        return{
+            titleText:"帳號變更系統",
+        }
+    },
     components: {
         ManageAddAndUpdate,
-        Footer
+        Footer,
+        Header
+    },
+    methods:{
+        goBack(){
+            this.$router.push("/manage")
+        }
     }
 }
 </script>
 <template>
     <div class="sticky-footer">
 
-        <div id="quizHead">
-            <h2 id="headText1">Java 全端培訓班</h2>
-            <h2 id="headText2">人員創建系統</h2>
-        </div>
+        <Header v-model:secondTitle="titleText" @home="goBack" />
+
 
         <div class="manageAddAndUpdateDiv1">
             <div class="manageAddAndUpdateDiv2">
-                <h3 class="manageAddAndUpdate">創建</h3>
+                <h3 class="manageAddAndUpdate">變更</h3>
 
                 <ManageAddAndUpdate></ManageAddAndUpdate>
 
                 <div class="manageAddAndUpdateBtnDiv">
-                    <RouterLink to="/manageB"><button type="button" class="btn btn-outline-secondary"
+                    <RouterLink to="/manage"><button type="button" class="btn btn-outline-secondary"
                             id="manageAddAndUpdateBtn1">取消</button></RouterLink>
                     <button type="button" class="btn btn-outline-secondary" id="manageAddAndUpdateBtn2">確認</button>
 
@@ -34,6 +43,7 @@ export default {
             </div>
 
         </div>
+
 
         <Footer></Footer>
 

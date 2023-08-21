@@ -1,22 +1,29 @@
-<!-- 學員資料 -->
+<!-- 學員成績總覽 -->
 
 <script>
-import Footer from "../../components/Footer.vue";
+import Footer from "../../../components/Footer.vue";
+import Header from "../../../components/Header.vue";
+
 export default {
+    data(){
+        return{
+            titleText:"學員成績總覽",
+        }
+    },
     components: {
-        Footer
+        Footer,
+        Header,
+    },
+    methods:{
+        goBack(){
+            this.$router.push("/manage")
+        }
     }
 }
 </script>
 <template>
     <div class="sticky-footer">
-        <header>
-            <div id="quizHead">
-                <h2 id="headText1">Java 全端培訓班</h2>
-                <h2 id="headText2">學員資料</h2>
-            </div>
-        </header>
-
+        <Header v-model:secondTitle="titleText" @home="goBack"/>
 
         <div id="studentInformationBody">
 
@@ -26,11 +33,14 @@ export default {
                     <div id="studentInformationNavsDiv2">
                         <div class="nav flex-column " id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
-                            <RouterLink to="/studentInformation/studentTainan" class="studentInformationNavsBtn1">台南 -
+                            <RouterLink to="/studentResultsAll/TainanStudentResultsAll" class="studentInformationNavsBtn1">
+                                台南 -
                                 跨域互動C#程式開發(第三梯次)
                             </RouterLink>
 
-                            <RouterLink to="/studentInformation/studentKaohsiung" class="studentInformationNavsBtn2">高雄義大 -
+                            <RouterLink to="/studentResultsAll/kaohsiungStudentResultsAll"
+                                class="studentInformationNavsBtn2">
+                                高雄義大 -
                                 跨域互動C#程式開發(第四梯次)
                             </RouterLink>
 
@@ -40,20 +50,17 @@ export default {
 
             </div>
 
-            <RouterView />
-
         </div>
 
-
-
+        <RouterView />
 
         <Footer></Footer>
-
     </div>
 </template>
 <style lang="scss">
 #studentInformationBody {
     height: 500px;
+    position: relative;
 
     #studentInformationBody1 {
         position: absolute;
@@ -64,7 +71,7 @@ export default {
             height: 510px;
             border: 5px solid #b0eaff;
             position: relative;
-            bottom: 5px;
+            bottom: 4px;
             display: flex;
             justify-content: center;
 

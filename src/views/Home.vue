@@ -1,18 +1,24 @@
 <!-- 主頁 -->
 
 <script>
-import { RouterLink } from "vue-router"
-import Header from "../components/Header.vue"
+import { RouterLink } from "vue-router";
+import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 
-export default {
 
-    // 放impute的東西
+export default {
+    data() {
+        return {
+            homeTitle:"ICAICVT",
+            homeTitle2:"國際產訓研究中心",
+        }
+    },
+    // 放 import 的元件或套件
     components: {
         Header,
-        Footer
+        Footer,
 
-    }
+    },
 }
 
 </script>
@@ -20,21 +26,18 @@ export default {
 <template>
     <div class="sticky-footer">
 
-        <Header></Header>
-        <div id="quizHead">
-            <h2 id="headText1">ICAICVT</h2>
-            <h2 id="headText2" >國際產訓研究中心</h2>
-        </div>
+        <Header v-model:homeTitle="this.homeTitle" v-model:homeTitle2="this.homeTitle2" />
 
-        <div class="javaQuiz">
+        <div class="javaQuiz" >
             <h2>考試系統</h2>
             <div class="entrance">
                 <div class="card" id="studentCard" style="width: 18rem;">
                     <img src="../../public/istockphoto-1269224972-612x612-removebg-preview.png" class="card-img-top"
                         alt="學員">
                     <div class="card-body">
-                        <RouterLink to="/studentLogin"><button type="button" class="btn btn-outline-dark"
-                                id="studentBtn">學員登入</button></RouterLink>
+                        <RouterLink to="/studentLogin">
+                            <button type="button" class="btn btn-outline-dark" id="studentBtn">學員登入</button>
+                        </RouterLink>
                         <RouterView />
                     </div>
 
@@ -44,12 +47,12 @@ export default {
                     <img src="../../public/manager-2.png" class="card-img-top" alt="管理員">
                     <div class="card-body">
 
-                        <RouterLink to="/manageLogin"><button type="button" class="btn btn-outline-dark"
-                                id="teacherBtn">人員登入</button></RouterLink>
+                        <RouterLink to="/manageLogin">
+                            <button type="button" class="btn btn-outline-dark" id="teacherBtn">人員登入</button>
+                        </RouterLink>
                         <RouterView />
                     </div>
                 </div>
-
             </div>
         </div>
 

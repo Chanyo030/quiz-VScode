@@ -11,6 +11,8 @@
 
 
                         <RouterLink to="/studentIndex/black" class="quizNavsBtn2">黑本</RouterLink>
+
+                        <RouterLink to="/studentIndex/blue" class="quizNavsBtn3">藍本</RouterLink>
                     </div>
 
                 </div>
@@ -52,6 +54,11 @@
             .quizNavsBtn2 {
                 position: relative;
                 top: 40px;
+            }
+
+            .quizNavsBtn3 {
+                position: relative;
+                top: 55px;
             }
 
         }

@@ -2,22 +2,33 @@
 
 <script>
 import Footer from "../../components/Footer.vue";
-
+import Header from "../../components/Header.vue";
 
 export default {
+    data() {
+        return {
+            titleText: "成績查詢"
+        }
+    },
     components: {
-        Footer
+        Footer,
+        Header
+    },
+    methods: {
+        backIndex() {
+            this.$router.push('/studentIndex')
+        }
     }
+
 }
 </script>
 <template>
     <div class="sticky-footer">
-        <header>
-            <div id="quizHead">
-                <h2 id="headText1">Java 全端培訓班</h2>
-                <h2 id="headText2">成績查詢</h2>
-            </div>
-        </header>
+
+        <div id="quizHead">
+            <Header v-bind:secondTitle="titleText" @home="backIndex" />
+        </div>
+
 
         <div id="quizBody">
             <div id="quizBody1">
