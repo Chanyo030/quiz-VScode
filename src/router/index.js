@@ -3,7 +3,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import TrainingEnd from "../views/Manage/Course/TrainingEnd.vue";
-import AddQuizBook from "../views/Manage/Course/AddQuizBook.vue";
+import EditQuizBook from "../views/Manage/Course/EditQuizBook.vue";
 
 // Manage - 2 個
 import ManageLogin from "../views/Manage/ManageLogin.vue";
@@ -174,6 +174,7 @@ const router = createRouter({
                 }
             ],
         },
+        // Exampage
         {
             path:"/examPage",
             name:"examPage",
@@ -252,10 +253,21 @@ const router = createRouter({
         },
         // addQuizBook
         {
-            path: "/addQuizBook",
-            name: "addQuizBook",
-            component: AddQuizBook,
+            path: "/editQuizBook",
+            name: "editQuizBook",
+            component: EditQuizBook,
         },
+        {
+            path:"/addQuizBook",
+            name:"addQuizBook",
+            component: () => import('../views/Manage/Course/AddQuizBook.vue')
+        },
+        {
+            path:"/addCode",
+            name:"addCode",
+            component: () => import("../views/Manage/Course/AddCode.vue")
+        }
+        
     ],
 });
 

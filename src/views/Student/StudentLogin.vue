@@ -81,8 +81,8 @@ export default {
     watch: {
         // studentId(){
         //     console.log(this.studentId);
-        //     console.log(this.studentName);
-        //     console.log(this.studentPassword);
+            // console.log(this.studentName);
+            // console.log(this.studentPassword);
         // }
     }
 }
@@ -99,8 +99,8 @@ export default {
             <img class="img5" src="../../../public/191059.png" alt="data">
             <div class="input-group mb-3 studentId">
                 <span class="input-group-text" id="basic-addon1">學號</span>
-                <input type="number" class="form-control" id="inputId" placeholder="ID" aria-label="UserId"
-                    aria-describedby="basic-addon1" v-model="studentId">
+                <input type="text" class="form-control" id="inputId" placeholder="ID" aria-label="UserId"
+                    aria-describedby="basic-addon1" v-model="studentId" >
             </div>
 
             <div class="input-group mb-3 studentPwd">

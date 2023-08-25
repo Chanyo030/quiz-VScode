@@ -7,12 +7,12 @@
                 <div id="quizNavsDiv1-1">
                     <div class="nav flex-column " id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
-                        <RouterLink to="/studentIndex/purple" class="quizNavsBtn1">紫本</RouterLink>
+                        <RouterLink to="/studentIndex/purple" class="quizNavsBtn1"><font-awesome-icon
+                                :icon="['fas', 'book']" style="color: rgb(136, 66, 136); font-size: 28pt;" /></RouterLink>
 
+                        <RouterLink to="/studentIndex/black" class="quizNavsBtn2"><font-awesome-icon :icon="['fas', 'book']"
+                                style="color: rgb(0, 0, 0); font-size: 28pt;" /></RouterLink>
 
-                        <RouterLink to="/studentIndex/black" class="quizNavsBtn2">黑本</RouterLink>
-
-                        <RouterLink to="/studentIndex/blue" class="quizNavsBtn3">藍本</RouterLink>
                     </div>
 
                 </div>

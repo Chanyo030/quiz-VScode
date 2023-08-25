@@ -1,4 +1,8 @@
 <script>
+import { mapState, mapActions } from 'pinia';
+import quizChapter from "../../stores/quizChapter";
+import LoginState from '../../stores/LoginState';
+
 export default {
     data() {
         return {
@@ -6,7 +10,12 @@ export default {
             arr2: [],
         }
     },
+    computed:{
+        ...mapState(quizChapter, ["classify","chNum","chName","chQuestionNum"]),
+        ...mapState(LoginState,["showName"])
+    },
     methods: {
+        ...mapActions(quizChapter, ["getQuizInfo"]),
         addArr2() {
             for (let i = 1; i <= 70; i++) {
                 this.arr2.push(i);
@@ -30,11 +39,11 @@ export default {
                 <div class="quizHeader">
                     <!-- <div class="iconArea"> -->
                         <font-awesome-icon id="manageicon" :icon="['fab', 'java']" @click="doneAndHome" />
-                        <span>&emsp; 紫本</span>
+                        <span>&emsp; {{this.classify}}</span>
                     <!-- </div> -->
                     <!-- <div class="title"> -->
-                        <span>洞洞么</span>
-                        <span>CH1</span>
+                        <span>{{this.showName}}</span>
+                        <span>{{this.chNum}}</span>
                         <span>第幾題</span>
                     <!-- </div> -->
                 </div>
