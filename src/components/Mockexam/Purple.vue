@@ -73,7 +73,6 @@ export default {
                 <h2>考試說明</h2>
                 <div id="content">
                     <p>題本&emsp;&emsp;：{{ this.classify }}</p>
-                    <!-- <p>單元名稱</p> -->
                     <p>單元名稱：{{ this.chName }}</p>
                     <p>題數&emsp;&emsp;：{{ this.chQuestionNum }}&emsp;題</p>
                     <p>考試時間：&thinsp;分</p>

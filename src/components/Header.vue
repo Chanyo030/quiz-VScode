@@ -149,11 +149,11 @@ export default {
                     aria-expanded="false">課務管理</a>
                 <ul class="dropdown-menu">
                     <li>
-                        <RouterLink to="/addQuizBook"><a class="dropdown-item" href="#">題庫創建</a></RouterLink>
+                        <RouterLink to="/editQuizBook"><a class="dropdown-item" href="#">題本管理</a></RouterLink>
 
                     </li>
                     <li>
-                        <RouterLink to=""><a class="dropdown-item" href="#">題庫變更</a></RouterLink>
+                        <RouterLink to="/addQuizBook"><a class="dropdown-item" href="#">題本新增</a></RouterLink>
 
                     </li>
                     <li>
