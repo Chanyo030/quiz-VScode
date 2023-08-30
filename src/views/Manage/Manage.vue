@@ -4,7 +4,7 @@
 import { RouterLink } from 'vue-router';
 import Footer from "../../components/Footer.vue";
 import Modal from "../../components/Mockexam/Modal.vue";
-import Header from '../../components/header.vue';
+import Header from '../../components/Header.vue';
 
 
 export default {
@@ -79,7 +79,7 @@ export default {
 
         #manageNavsDiv2 {
             width: 370px;
-            height: 510px;
+            height: 80vh;
             border: 5px solid #b0eaff;
             position: relative;
             bottom: 5px;

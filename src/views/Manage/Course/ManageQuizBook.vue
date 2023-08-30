@@ -1,5 +1,7 @@
 <script>
 import Header from "../../../components/Header.vue";
+import { mapState, mapActions } from "pinia";
+import quizChapter from "../../../stores/quizChapter";
 
 export default {
     components: {
@@ -10,23 +12,24 @@ export default {
     data() {
         return {
             titleText: "題本管理",
-            allChapters: "",
-            classifyArr: [],
-            unitInfo:[],
-
-
+            unitInfo: [],
         };
     },
+    computed:{
+        ...mapState(quizChapter,["allChapters","classifyArr"])
+    },
     methods: {
-
+        ...mapActions(quizChapter,["allQuizChaptersFun"]),
         goBack() {
             this.$router.push("/manage")
         },
-        catchAllChapters() {
+        getUnitAndName(classify, unit) {
             let req = {
-                "classify": ""
+                "classify": classify,
+                "classifyUnit": unit
             }
-            fetch("http://localhost:8080/api/get_All_Classify_Chapters", {
+
+            fetch("http://localhost:8080/api/get_Chapter_Info", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -36,42 +39,37 @@ export default {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
-                    this.allChapters = data;
-                    this.allChapters.forEach(item => {
-                        if (!this.classifyArr.includes(item.classify)) {
-                            this.classifyArr.push(item.classify)
-                        }
-                    })
-
+                    this.unitInfo = data.quizBookChapter
+                    console.log(this.unitInfo)
                 })
                 .catch(error => console.log(error))
+
+                this.getUnitQuestions(unit)
+
         },
-        getUnitAndName(classify, unit){
-            let req ={
-                "classify":classify,
-                "classifyUnit":unit
+        getUnitQuestions(unit) {
+            let req = {
+                "classify-unit": unit
             }
-
-            fetch("http://localhost:8080/api/get_Chapter_Info" ,{
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json"
+            fetch("http://localhost:8080/api/get_questions", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
                 },
-                body:JSON.stringify(req)
-            }).then( res => res.json())
-            .then(data => {
-                console.log(data)
-                this.unitInfo = data.quizBookChapter
-                console.log(this.unitInfo)
-            }).catch(error => console.log(error))
-
+                body: JSON.stringify(req)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(error => console.log(error))
         }
 
 
 
     },
     created() {
-        this.catchAllChapters();
+        this.allQuizChaptersFun();
 
     },
     updated() {
@@ -90,12 +88,6 @@ export default {
 
 
             <div class="darkLeft">
-                <!-- <h1>已有題本</h1> -->
-                <!-- <label for="" v-for="(item, index) in classifyArr" @click="getChaptersInfo(item)">{{ item }}
-                    <ol v-show="liShow">
-                        <li v-for="elements in chapterInfoArr">{{ elements.classifyUnit }}</li>
-                    </ol>
-                </label> -->
 
                 <div class="accordion" id="accordionExample">
                     <div class="accordion-item classifyTitle" v-for="(item, index) in classifyArr">
@@ -103,14 +95,15 @@ export default {
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button bigItem" type="button" data-bs-toggle="collapse"
                                 :data-bs-target="'#collapse' + [index]" aria-expanded="true"
-                                :aria-controls="'collapse' + [index]" @click="catchAllChapters()">
+                                :aria-controls="'collapse' + [index]" >
                                 {{ item }}
                             </button>
                         </h2>
                         <div :id="'collapse' + [index]" class="accordion-collapse collapse " aria-labelledby="headingOne"
                             v-for="elements in allChapters" data-bs-parent="#accordionExample">
                             <div class="accordion-body deatilItems" v-show="elements.classify == item">
-                                <button type="button" class="btn btn-outline-primary" @click="getUnitAndName(item,elements.classifyUnit)">
+                                <button type="button" class="btn btn-outline-primary"
+                                    @click="getUnitAndName(item, elements.classifyUnit)">
                                     {{ elements.classifyUnit }}
                                 </button>
                             </div>
@@ -144,15 +137,16 @@ export default {
         flex-direction: column;
         border-right: 2px solid rgb(144, 135, 251);
 
-        .accordion{
-        
+        .accordion {
+
             width: 90%;
+
             .classifyTitle {
                 border: 0;
-    
+
                 .accordion-header {
-    
-    
+
+
                     .bigItem {
                         font-size: 24pt;
                         padding: 0;
@@ -161,18 +155,18 @@ export default {
                         transition: 0.5s;
                     }
                 }
-    
-    
+
+
                 .deatilItems {
                     padding: 5px;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     flex-direction: column;
-    
+
                 }
-    
-    
+
+
             }
         }
 

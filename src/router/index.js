@@ -3,7 +3,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import TrainingEnd from "../views/Manage/Course/TrainingEnd.vue";
-import EditQuizBook from "../views/Manage/Course/EditQuizBook.vue";
+import ManageQuizBook from "../views/Manage/Course/ManageQuizBook.vue";
 
 // Manage - 2 個
 import ManageLogin from "../views/Manage/ManageLogin.vue";
@@ -253,9 +253,9 @@ const router = createRouter({
         },
         // addQuizBook
         {
-            path: "/editQuizBook",
-            name: "editQuizBook",
-            component: EditQuizBook,
+            path: "/manageQuizBook",
+            name: "manageQuizBook",
+            component: ManageQuizBook,
         },
         {
             path:"/addQuizBook",

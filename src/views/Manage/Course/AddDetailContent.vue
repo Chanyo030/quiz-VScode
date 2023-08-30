@@ -13,32 +13,26 @@ export default {
 </script>
 
 <template>
-    <Header />
-    <div class="addArea">
-        <div class="left">
 
-        </div>
-        <div class="right">
-
-        </div>
+    <div class="detailArea">
+        <h2>詳細內容</h2>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.addArea {
-    width: 100vw;
-    height: 100vh;
+.detailArea {
+    width: 90vw;
+    height: 80vh;
 
-    .left {
-        width: 10vw;
-        height: 100vh;
-        background-color: #7c7c7c;
-    }
-
-    .right {
-        width: 90vw;
-        height: 100vh;
-    }
+    textArea {
+                resize: none;
+                width: 95%;
+                height: 30rem;
+                font-size: 14pt;
+                margin-bottom: 20px;
+            }
+   
 
 }
 </style>

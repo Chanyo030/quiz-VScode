@@ -1,24 +1,44 @@
 <script>
-
 export default {
     data() {
         return {
             titleText: "新增程式碼",
-            images: [],
         }
     },
     components: {
 
     },
+    props: [
+        "questionImages",
+        "answerImages",
+        "detailImages"
+    ],
     methods: {
-        getImages(e) {
+        getQuestionImages(e) {
+            const files = e.target.files;
+            const reader = new FileReader();
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                reader.onload = (e) => {
+                    this.questionImages.push({
+                        id: i,
+                        url: e.target.result,
+                    });
+                    console.log(e.target.result)
+                };
+
+                reader.readAsDataURL(file);
+                this.$emit("questionImages",)
+            }
+        },
+        getAnswerImages(e) {
             const files = e.target.files;
             const reader = new FileReader();
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
 
                 reader.onload = (e) => {
-                    this.images.push({
+                    this.answerImages.push({
                         id: i,
                         url: e.target.result,
                     });
@@ -27,73 +47,135 @@ export default {
                 reader.readAsDataURL(file);
             }
         },
+        getDetailImages(e) {
+            const files = e.target.files;
+            const reader = new FileReader();
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+
+                reader.onload = (e) => {
+                    this.detailImages.push({
+                        id: i,
+                        url: e.target.result,
+                    });
+                };
+
+                reader.readAsDataURL(file);
+            }
+        },
+        submitImages(targetArr){
+            this.$emit("getArr",targetArr);
+        },
+        clean(itemArr){
+            const imgSelect = document.getElementById("imgInput");
+            imgSelect.value = '';
+            itemArr.splice(0,itemArr.length)
+            this.$emit('cleanArr', itemArr)
+        },
     }
 }
 </script>
 
 <template>
+    <div class="codeArea">
+        <h1>程式碼內容</h1>
+        <div class="buttonArea">
 
-    <div class="addArea">
-        <div class="left">
-
-        </div>
-        <div class="right">
-            <h1>程式碼內容編輯</h1>
-            <div class="quizBook">
-                <label for="" >新增圖片</label>
-                <div class="photo" >
-                    <input class="form-control" type="file" id="imgInput" @change="getImages" multiple>
-
-                    <div class="imgContainer">
-
-                        <div class="imgDiv" v-for="image in images" :key="image.id">
-                            <img :src="image.url" alt="Image" />
-                        </div>
-                    </div>
-
-
-                </div>
-
+            <div class="photoSelect">
+                <h2>題目圖片</h2>
+                <button @click="submitImages(questionImages)">預覽</button>
+                <button @click="clean(questionImages)">清除</button>
             </div>
+            <input class="" type="file" id="imgInput" @change="getQuestionImages" multiple>
+            <div class="photoSelect">
+                <h2>答案圖片</h2>
+                <button @click="submitImages(answerImages)">預覽</button>
+                <button @click="clean(answerImages)">清除</button>
+            </div>
+            <input class="" type="file" id="imgInput" @change="getAnswerImages" multiple>
+            <div class="photoSelect">
+                <h2>詳解圖片</h2>
+                <button @click="submitImages(detailImages)">預覽</button>
+                <button @click="clean(detailImages)">清除</button>
+            </div>
+            <input class="" type="file" id="imgInput" @change="getDetailImages" multiple>
         </div>
+        <!-- <div class="photo">
+            
+            <label for="">新增圖片</label>
+            <input class="" type="file" id="imgInput" @change="getImages" multiple>
+        </div>
+        <div class="imgContainer">   -->
+        <!-- <div class="imgDiv" v-for="image in images" :key="image.id"> -->
+        <!-- <div class="imgDiv" >
+                <img    v-for="image in images" :key="image.id" :src="image.url" alt="Image" />
+            </div> 
+        </div> -->
+
+
+
+
     </div>
 </template>
 
 <style lang="scss" scoped>
-.addArea {
-    width: 100vw;
-    height: 100vh;
+.codeArea {
+    width: 90vw;
+    height: 80vh;
     display: flex;
+    align-items: center;
+    flex-direction: column;
 
-    .left {
-        width: 10vw;
-        height: 100vh;
-        background-color: #7c7c7c;
-    }
+    // .photo {
+    //     width: 100%;
+    //     height: 10vh;
+    //     display: flex;
+    //     justify-content: space-around;
+    // }
 
-    .right {
-        width: 90vw;
-        height: 100vh;
+    // .imgContainer {
+    //     width: 100%;
+    //     height: 70vh;
 
-        .quizBook {
-            .photo {
-                width: 80%;
-                // height: 1000px;
+    //     .imgDiv {
+    //         width: 100%;
+    //         height: 100%;
+    //         border: 1px solid black;
+    //         overflow: auto;
+    //     }
+    // }
 
-                .imgContainer {
-                    width: 100%;
-                    // height: 1000px;
+    .buttonArea {
+        width: 60%;
+        height: inherit;
+        display: flex;
+        // justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
 
-                    .imgDiv {
-                        width: 1000px;
-                        // height: 800px;
-                        border: 1px solid black;
-                        overflow: auto;
-                    }
+        .photoSelect {
+            width: 80%;
+            height: 5vh;
+            margin: 5vh;
+            display: flex;
+            justify-content: space-around;
+
+            button {
+                height: 5vh;
+                background-color: #b0eaff;
+                color: #0059c6;
+                font-size: 16pt;
+                transition: 0.5s;
+                border: none;
+
+                &:hover {
+                    font-size: 20pt;
+                    background-color: #6f7b9e;
+                    color: #ffffff;
                 }
+
             }
         }
     }
-
 }
 </style>
