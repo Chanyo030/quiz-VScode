@@ -1,5 +1,5 @@
 <script>
-import Header from "../../../components/Header.vue";
+
 export default {
     data() {
         return {
@@ -7,16 +7,18 @@ export default {
         }
     },
     components: {
-        Header,
-    }
+    },
+    props:[
+        "QandAObject"
+    ],
 }
 </script>
 
 <template>
 
     <div class="detailArea">
-        <h2>詳細內容</h2>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <h2>詳解內容</h2>
+        <textarea name="" id="" cols="30" rows="10" v-model="this.QandAObject.explanationText"></textarea>
     </div>
 </template>
 

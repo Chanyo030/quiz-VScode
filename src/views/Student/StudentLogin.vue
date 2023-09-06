@@ -21,10 +21,10 @@ export default {
         }
     },
     computed:{
-        ...mapState(LoginState,["showName"])
+        ...mapState(LoginState,["showStudentName"])
     },
     methods: {
-        ...mapActions(LoginState,["getInfo"]),
+        ...mapActions(LoginState,["getStudentInfo"]),
         scesfulChange(){
             this.successfulMessage = !this.successfulMessage;
         },
@@ -58,7 +58,7 @@ export default {
                     if (data.message.includes("successful")) {
                         this.scesfulChange();
                         sessionStorage.setItem("userId",JSON.stringify(this.studentId))
-                        this.getInfo(this.studentId)
+                        this.getStudentInfo(this.studentId)
                     }else{
                         this.failChange();
                     }

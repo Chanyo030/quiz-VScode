@@ -11,7 +11,8 @@ export default {
     props: [
         "questionImages",
         "answerImages",
-        "detailImages"
+        "detailImages",
+        "QandAObject"
     ],
     methods: {
         getQuestionImages(e) {
