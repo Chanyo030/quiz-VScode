@@ -4,8 +4,8 @@ import { defineStore } from "pinia";
 export default defineStore("LoginState",{
     state:() =>({
         isShow:false,
-        showName:"",
-        showUserInfo:{},
+        showStudentName:"",
+        showStudentInfo:{},
     }),
     getters:{
 
@@ -14,7 +14,7 @@ export default defineStore("LoginState",{
         switchModal(){
             this.isShow =  !this.isShow;
         },
-        getInfo(id){
+        getStudentInfo(id){
             let req={
                 "studentId":id,
             } 
@@ -29,8 +29,8 @@ export default defineStore("LoginState",{
             .then(data => {
                 console.log(data)
                 
-                this.showName = data.studentInfo.studentName;
-                this.showUserInfo = data.studentInfo;
+                this.showStudentName = data.studentInfo.studentName;
+                this.showStudentInfo = data.studentInfo;
             })
             .catch(error => console.log(error))
         }

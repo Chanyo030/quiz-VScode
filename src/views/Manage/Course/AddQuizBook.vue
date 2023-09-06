@@ -27,7 +27,7 @@ export default {
             QandA: {
                 questionCode: "",    // 題目代碼
                 classify: "",        // 題本分類
-                classifyUnit:"",
+                classifyUnit: "",
                 topicJp: "",         // 題目(日)
                 topicTw: "",         // 題目(中)
                 selectionText: "",   // 選項文字
@@ -35,10 +35,9 @@ export default {
                 explanationText: "", // 詳解文字
                 extraordinary: false,   // 是否特殊題型
                 extraordSet: "",     // 連結題型
-                uploadName: "",      // 更新者的名字
+                uploadName: "洞么么",      // 更新者的名字
                 uploadTime: "",      // 更新題目的時間
-                pictureCode: "",     // 圖片代碼
-                check: false         // 是否複選
+                checkOn: false         // 是否複選
             },
             questionImages: [],    // 題目圖片
             answerImages: [],    // 答案圖片
@@ -96,17 +95,96 @@ export default {
         previewOff() {
             this.previewOn = !this.previewOn;
         },
-        checkOn(){
-            this.QandA.check = !this.QandA.check;
+        checkOn() {
+            this.QandA.checkOn = !this.QandA.checkOn;
         },
-        extraordinaryOn(){
+        extraordinaryOn() {
             this.QandA.extraordinary = !this.QandA.extraordinary;
+        },
+        submitImg() {
+            let req = {
+                "pictureList": []
+            }
+
+            let item = {
+                "classify": this.QandA.classify,
+                "topicCode": this.QandA.questionCode,
+                "topicImg": "",
+                "selectionImg": "",
+                "explanationImg": "",
+                "extraordinary": this.QandA.extraordinary
+            }
+
+            let sum = 0;
+            let x = this.questionImages.length;
+            let y = this.answerImages.length;
+            let z = this.detailImages.length;
+            if (x > y && x > z) {
+                sum = x;
+            } else if (y > x && y > z) {
+                sum = y;
+            } else {
+                sum = z;
+            }
+            for (let i = 0; i < sum; i++) {
+                if (x > 0) {
+                    item.topicImg = this.questionImages[i].url.substr(22)
+                }
+                if (y > 0) {
+                    item.selectionImg = this.answerImages[i].url.substr(22)
+                }
+                if (z > 0) {
+                    item.explanationImg = this.detailImages[i].url.substr(22)
+                }
+                req.pictureList.push(item)
+            }
+
+            console.log(req)
+            fetch("http://localhost:8080/api/add_question_picture", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(req)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => alert(error))
+            console.log(req)
+        },
+        submitQuestion() {
+            let req = {
+                "QandA": {}
+            };
+            console.log(req)
+            req.QandA = this.QandA;
+            
+            fetch("http://localhost:8080/api/add_question_and_answer", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(req)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
+        },
+        submitObject() {
+            this.submitImg()
+            this.submitQuestion()
         }
 
-    },
-    watch: {
+
     },
     updated() {
+
     },
     created() {
         console.log(this.classifyArr)
@@ -119,14 +197,15 @@ export default {
     <div class="addArea">
 
         <div class="left">
-            <span class="quizArr">None</span>
+            <span class="quizArr">{{ QandA.questionCode }}</span>
             <!-- <span class="quizArr" v-for="item in questionArr"></span> -->
         </div>
 
         <div class="right">
             <!-- step1 -->
             <div class="stepAreaOff" :class="{ stepAreaOn: step1 }">
-                <AddQuestion v-show="step1" v-model:QandAObject="QandA" v-on:checkOn="checkOn" v-on:teamOn="extraordinaryOn"/>
+                <AddQuestion v-show="step1" v-model:QandAObject="QandA" v-on:checkOn="checkOn"
+                    v-on:teamOn="extraordinaryOn" />
                 <button v-show="step1" @click="goStep2">
                     <font-awesome-icon :icon="['fas', 'play']" />
                 </button>
@@ -136,7 +215,7 @@ export default {
             </div>
             <!-- step2 -->
             <div class="stepAreaOff" :class="{ stepAreaOn: step2 }">
-                <AddAnswer v-show="step2" v-model:QandAObject="QandA"/>
+                <AddAnswer v-show="step2" v-model:QandAObject="QandA" />
                 <button v-show="step2" @click="goStep3">
                     <font-awesome-icon :icon="['fas', 'play']" />
                 </button>
@@ -146,16 +225,18 @@ export default {
             </div>
             <!-- step3 -->
             <div class="stepAreaOff" v-bind:class="{ stepAreaOn: step3 }">
-                <AddDetailContent v-show="step3" />
-                <button v-show="step3" @click="goStep4"><font-awesome-icon :icon="['fas', 'play']" /></button>
-                <button v-show="step3 == false" @click="backStep3"><font-awesome-icon :icon="['fas', 'play']"
+                <AddDetailContent v-show="step3" v-model:QandAObject="QandA" />
+                <!-- <button v-show="step3" @click="goStep4"><font-awesome-icon :icon="['fas', 'play']" /></button> -->
+                <button v-show="step4 == true" @click="backStep3"><font-awesome-icon :icon="['fas', 'play']"
                         rotation=180 /></button>
             </div>
             <!-- step4 -->
             <div class="stepAreaOff" v-bind:class="{ stepAreaOn: step4 }">
                 <AddCode v-show="step4" v-bind:questionImages="questionImages" v-bind:answerImages="answerImages"
-                    v-bind:detailImages="detailImages" v-on:getArr="inputImages" v-on:cleanArr="cleanImages" />
-                <button @click="goStep4"><font-awesome-icon :icon="['fas', 'play']" /></button>
+                    v-bind:detailImages="detailImages" v-model:QandAObject="QandA" v-on:getArr="inputImages"
+                    v-on:cleanArr="cleanImages" />
+                <button @click="goStep4" v-show="step4 == false"><font-awesome-icon :icon="['fas', 'play']" /></button>
+                <button v-show="step4" @click="submitObject">送出</button>
             </div>
         </div>
         <CodePreview v-if="previewOn" v-model:images="previewImages" v-on:offWindow="previewOff" />

@@ -24,10 +24,10 @@ export default {
         }
     },
     computed:{
-        ...mapState(LoginState,["showName"])
+        ...mapState(LoginState,["showStudentName"])
     },
     methods: {
-        ...mapActions(LoginState,["getInfo"]),
+        ...mapActions(LoginState,["getStudentInfo"]),
         backIndex() {
             this.$router.push('/studentIndex')
         },
@@ -37,7 +37,7 @@ export default {
         if(sessionStorage.getItem("userId") !== null){
             let id =JSON.parse(sessionStorage.getItem("userId"));
             console.log(id)
-            this.getInfo(id)
+            this.getStudentInfo(id)
         }
     }
 }
@@ -45,7 +45,7 @@ export default {
 <template>
     <div class="sticky-footer">
         <div id="quizHead">
-            <Header v-bind:secondTitle="titleText" v-bind:userName="showName" @home="backIndex"/>
+            <Header v-bind:secondTitle="titleText" v-bind:userName="showStudentName" @home="backIndex"/>
         </div>
 
         <ClassifyTable />
