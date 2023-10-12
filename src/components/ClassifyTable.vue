@@ -1,10 +1,10 @@
 <script></script>
 <template>
-    <div id="quizBody">
-        <div id="quizBody1">
+    <div class="quizBody">
+        <div class="quizBody1">
 
             <div class="d-flex align-items-start" id="quizNavsDiv1">
-                <div id="quizNavsDiv1-1">
+                <div class="quizNavsDiv1-1">
                     <div class="nav flex-column " id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
                         <RouterLink to="/studentIndex/purple" class="quizNavsBtn1"><font-awesome-icon
@@ -28,18 +28,19 @@
         </div>
     </div>
 </template>
-<style lang="scss">
-#quizBody {
+<style lang="scss" scoped>
+.quizBody {
+
     height: 500px;
     position: relative;
 
-    #quizBody1 {
+    .quizBody1 {
         position: absolute;
 
 
-        #quizNavsDiv1-1 {
+        .quizNavsDiv1-1 {
             width: 200px;
-            height: 510px;
+            height: 80vh;
             border: 5px solid #b0eaff;
             position: relative;
             bottom: 5px;

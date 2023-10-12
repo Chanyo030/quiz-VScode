@@ -7,28 +7,36 @@ export default {
         return {
             ansNums: 0,
             ansNumsArr: [],
-            ansCode: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'],
+            ansCode: ["A", "B", "C", "D", "E", "F", "G", "H"],
             ans: [],
             ansText: "",
             modalShow: false,
-        }
+        };
     },
-    props: [
-        "leftArr",
-        "QandAObject",
-    ],
+    props: ["leftArr", "QandAObject"],
     components: {
-        Modal
+        Modal,
     },
     computed: {
-        ...mapState(quizChapter, ["allChapters", "classifyArr", "classifyChapters", "chapterQuestionNums", "questionCode"]),
+        ...mapState(quizChapter, [
+            "allChapters",
+            "classifyArr",
+            "classifyChapters",
+            "chapterQuestionNums",
+            "questionCode",
+        ]),
     },
     methods: {
-        ...mapActions(quizChapter, ["allQuizChaptersFun", "classifyAllCh", "getUnitQuestionNums", "makeCode"]),
+        ...mapActions(quizChapter, [
+            "allQuizChaptersFun",
+            "classifyAllCh",
+            "getUnitQuestionNums",
+            "makeCode",
+        ]),
         ansArr(num) {
-            this.ansNumsArr = []
+            this.ansNumsArr = [];
             for (let i = 1; i <= num; i++) {
-                this.ansNumsArr.push(i)
+                this.ansNumsArr.push(i);
             }
         },
         addAns() {
@@ -36,40 +44,38 @@ export default {
             if (!regx.test(this.ansText) || this.ansText == "") {
                 this.modalShow = !this.modalShow;
             } else {
-                console.log(this.ansText.split(""))
+                console.log(this.ansText.split(""));
                 this.ansText.split("").forEach((item, index) => {
-                    if (this.ansText.split("")[index] == this.ansText.split("")[index + 1]) {
-
+                    if (
+                        this.ansText.split("")[index] == this.ansText.split("")[index + 1]
+                    ) {
                         this.modalShow = !this.modalShow;
-
                     }
-                })
-                this.ans = this.ansText.split("").join(",")
-                console.log(this.ans)
+                });
+                this.ans = this.ansText.split("").join(",");
+                console.log(this.ans);
                 this.QandAObject.answer = this.ans;
             }
-
-
         },
         modalChange() {
             this.modalShow = !this.modalShow;
-        }
+        },
     },
     updated() {
-        console.log(this.QandAObject)
-        console.log(this.chapterQuestionNums)
-        this.QandAObject.questionCode = this.questionCode
+        console.log(this.QandAObject);
+        console.log(this.chapterQuestionNums);
+        this.QandAObject.questionCode = this.questionCode;
     },
     created() {
-        this.allQuizChaptersFun()
+        this.allQuizChaptersFun();
     },
-}
+};
 </script>
 
 <template>
     <div class="questionArea">
         <Modal v-show="modalShow" v-on:alertMessage="modalChange">
-            <div class="modalContent" style="align-content: center; font-size: 28pt;">
+            <div class="modalContent" style="align-content: center; font-size: 28pt">
                 <p>答案內容格式要正確</p>
                 <p>只可以為英文字母</p>
             </div>
@@ -82,7 +88,7 @@ export default {
                 <!-- 題目 -->
                 <label for="">題本</label>
                 <select name="classify" id="quizClassify" v-model="this.QandAObject.classify"
-                    @change="this.classifyAllCh(this.QandAObject.classify);">
+                    @change="this.classifyAllCh(this.QandAObject.classify)">
                     <option value="">請選擇</option>
                     <option :value="item" v-for="item in classifyArr">{{ item }}</option>
                 </select>
@@ -93,28 +99,32 @@ export default {
                     @change="getUnitQuestionNums(this.QandAObject.classifyUnit)">
                     <option value="">請選擇</option>
                     <option v-for="elements in classifyChapters" :value="elements.classifyUnit">
-                        {{ elements.classifyUnit }} </option>
+                        {{ elements.classifyUnit }}
+                    </option>
                 </select>
                 <!-- 第幾題 -->
                 <label for="">
                     第
                     <select name="" id="" disabled>
-                        <option value="" v-if="this.QandAObject.classifyUnit == ''">題數</option>
-                        <option :value="chapterQuestionNums.length + 1" v-if="this.QandAObject.classifyUnit !== ''">{{
-                            chapterQuestionNums.length + 1 }}</option>
+                        <option value="" v-if="this.QandAObject.classifyUnit == ''">
+                            題數
+                        </option>
+                        <option :value="chapterQuestionNums.length + 1" v-if="this.QandAObject.classifyUnit !== ''">
+                            {{ chapterQuestionNums.length + 1 }}
+                        </option>
                     </select>
                     題
                 </label>
                 <!-- 是否複選 -->
                 <label for="">是否複選</label>
-                <input type="checkbox" @change="$emit('checkOn')">
+                <input type="checkbox" @change="$emit('checkOn')" />
                 <!-- 是否特殊題型 -->
                 <label for="">特殊題型</label>
-                <input type="checkbox" @change="$emit('teamOn')">
+                <input type="checkbox" @change="$emit('teamOn')" />
                 <!-- 若為特殊題型，則連結何種題型 -->
                 <label for="">連結題型</label>
                 <input type="text" class="contentQuesion" placeholder="題目代碼 ( ex:10101 )"
-                    :disabled="this.QandAObject.extraordinary == false">
+                    :disabled="this.QandAObject.extraordinary == false" />
             </div>
         </div>
         <div class="downInfo">
@@ -131,13 +141,21 @@ export default {
             <div class="content">
                 <span>正確答案</span>
                 <div class="rightAns">
-                    <input type="text" style="width: 80%;" v-model="ansText">
-                    <button type="button" style="margin-left: 30px;" @click="addAns">檢查</button>
+                    <input type="text" style="width: 80%" v-model="ansText" />
+                    <button type="button" style="margin-left: 30px" @click="addAns">
+                        檢查
+                    </button>
+                </div>
+                <div class="btnArea">
+                    <button type="button" @click="$emit('backStep1')">
+                        <font-awesome-icon :icon="['fas', 'play']" rotation="180" />
+                    </button>
+                    <button type="button" @click="$emit('goStep2')">
+                        <font-awesome-icon :icon="['fas', 'play']" />
+                    </button>
                 </div>
             </div>
-
         </div>
-
     </div>
 </template>
 
@@ -148,14 +166,11 @@ export default {
     display: flex;
     flex-direction: column;
 
-
-
     .topInfo {
         width: 95%;
         height: 15vh;
         display: flex;
         flex-direction: column;
-
 
         .info {
             // height: 100%;
@@ -179,7 +194,6 @@ export default {
         }
     }
 
-
     .downInfo {
         width: 95%;
         height: 75vh;
@@ -190,21 +204,18 @@ export default {
             display: flex;
             flex-direction: column;
 
-
             textArea {
                 resize: none;
                 width: 100%;
                 height: 8rem;
                 font-size: 14pt;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
-
-
         }
 
         .rightAns {
             width: 100%;
-            height: 10vh;
+            height: 8vh;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -227,6 +238,28 @@ export default {
                     color: #ffffff;
                 }
             }
+
+        }
+
+        .btnArea {
+            width: 100%;
+            font-size: 24pt;
+            display: flex;
+            justify-content: space-around;
+            
+            button{
+                border-radius: 5px;
+                border: 1px solid white;
+                background-color: #ffffff;
+                color: #0059c6;
+
+                &:hover {
+                    font-size: 28pt;
+                    color: #6f7b9e;
+                }
+
+            }
+
         }
     }
 }

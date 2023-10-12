@@ -13,13 +13,14 @@ export default {
         return {
             titleText: "題本管理",
             unitInfo: [],
+            unitQuestions: [],
         };
     },
-    computed:{
-        ...mapState(quizChapter,["allChapters","classifyArr"])
+    computed: {
+        ...mapState(quizChapter, ["allChapters", "classifyArr"])
     },
     methods: {
-        ...mapActions(quizChapter,["allQuizChaptersFun"]),
+        ...mapActions(quizChapter, ["allQuizChaptersFun"]),
         goBack() {
             this.$router.push("/manage")
         },
@@ -44,14 +45,15 @@ export default {
                 })
                 .catch(error => console.log(error))
 
-                this.getUnitQuestions(unit)
+            this.getUnitQuestions(classify, unit)
 
         },
-        getUnitQuestions(unit) {
+        getUnitQuestions(classify, unit) {
             let req = {
+                "classify":classify,
                 "classify-unit": unit
             }
-            fetch("http://localhost:8080/api/get_questions", {
+            fetch("http://localhost:8080/api/get_question_Nums", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -61,6 +63,7 @@ export default {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data)
+                    this.unitQuestions = data.questionAndAnswers
                 })
                 .catch(error => console.log(error))
         }
@@ -79,7 +82,6 @@ export default {
 </script>
 
 <template>
-    <!-- 此乃新增頁面 -->
     <div class="sticky-footer">
 
         <Header v-model:secondTitle="titleText" @home="goBack" />
@@ -95,7 +97,7 @@ export default {
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button bigItem" type="button" data-bs-toggle="collapse"
                                 :data-bs-target="'#collapse' + [index]" aria-expanded="true"
-                                :aria-controls="'collapse' + [index]" >
+                                :aria-controls="'collapse' + [index]">
                                 {{ item }}
                             </button>
                         </h2>
@@ -113,6 +115,11 @@ export default {
             </div>
             <div class="lightRight" v-show="this.unitInfo.classify !== undefined">
                 <p>{{ this.unitInfo.classify }} >> {{ this.unitInfo.classifyUnit }} >> {{ this.unitInfo.unitName }}</p>
+                <div class="questions" v-for="(chart, index) in this.unitQuestions ">
+                    <h3>{{ chart.questionCode }}</h3>
+                    <span>{{ chart.topicJp }} </span>
+                    <span>{{ chart.topicTw }}</span>
+                </div>
             </div>
         </div>
 
@@ -170,21 +177,6 @@ export default {
             }
         }
 
-        // label {
-        //     font-size: 24pt;
-        //     color: rgb(250, 250, 250);
-        //     transition: 0.5s;
-
-        //     ol {
-        //         font-size: 12pt;
-        //     }
-
-        //     &:hover {
-        //         cursor: pointer;
-        //         font-size: 32pt;
-        //     }
-
-        // }
 
 
     }
@@ -192,6 +184,15 @@ export default {
     .lightRight {
         width: 85%;
         height: 80vh;
+        overflow: auto;
+
+        .questions {
+            width: 100%;
+            height: 15vh;
+            padding-left: 5%;
+            display: flex;
+            flex-direction: column;
+        }
     }
 }
 </style>

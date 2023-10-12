@@ -42,12 +42,12 @@ export default {
         Header
     },
     computed: {
-        ...mapState(LoginState, ["showName", "showUserInfo"])
+        ...mapState(LoginState, ["showStudentName", "showStudentInfo"])
     },
 
     mounted() {
-        console.log(this.showUserInfo)
-        this.userInfo = this.showUserInfo
+        console.log(this.showStudentInfo)
+        this.userInfo = this.showStudentInfo
 
     },
     methods: {

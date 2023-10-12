@@ -85,6 +85,14 @@ export default {
                 </tr>
 
             </table>
+            <div class="btnArea">
+                    <button type="button" @click="$emit('backStep1')">
+                        <font-awesome-icon :icon="['fas', 'play']" rotation="180" />
+                    </button>
+                    <button type="button" @click="$emit('goStep3')">
+                        <font-awesome-icon :icon="['fas', 'play']" />
+                    </button>
+                </div>
         </div>
     </div>
 </template>
@@ -96,7 +104,7 @@ export default {
 
     .topArea {
         width: 95%;
-        height: 40%;
+        height: 35%;
         // border: 1px solid black;
 
         .selectInfo {
@@ -164,6 +172,27 @@ export default {
                 text-align: center;
                 border-bottom: 1px solid black;
             }
+        }
+
+        .btnArea {
+            width: 100%;
+            font-size: 24pt;
+            display: flex;
+            justify-content: space-around;
+            
+            button{
+                border-radius: 5px;
+                border: 1px solid white;
+                background-color: #ffffff;
+                color: #0059c6;
+
+                &:hover {
+                    font-size: 28pt;
+                    color: #6f7b9e;
+                }
+
+            }
+
         }
 
     }

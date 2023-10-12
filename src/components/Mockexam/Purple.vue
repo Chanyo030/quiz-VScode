@@ -5,11 +5,12 @@ import Modal from "./Modal.vue";
 import examPage from './examPage.vue';
 import { mapState, mapActions } from 'pinia';
 import quizChapter from "../../stores/quizChapter";
+import ExamState from "../../stores/ExamState";
 
 export default {
     components: {
         Modal,
-        examPage
+        examPage,
     },
     data() {
         return {
@@ -19,14 +20,15 @@ export default {
         }
     },
     computed: {
-        ...mapState(quizChapter, ["classify","chNum","chName","chQuestionNum"])
+        ...mapState(quizChapter, ["classify", "chNum", "chName", "chQuestionNum"]),
     },
     methods: {
         ...mapActions(quizChapter, ["getQuizInfo"]),
-        switchModal(book,ch) {
+        ...mapActions(ExamState, ["catchBook"]),
+        switchModal(book, ch) {
             this.isShow = !this.isShow
-            if(this.isShow == true){
-                this.getQuizInfo(book,ch)
+            if (this.isShow == true) {
+                this.getQuizInfo(book, ch)
             }
         },
         goExam() {
@@ -66,7 +68,8 @@ export default {
             <!-- allChes -->
             <li style="list-style-type: none;" v-for="(item, index) in this.allChapters">
                 <button type="button" class="btn btn-link quizA" id="quizTitleBtn"
-                    @click="switchModal(item.classify, item.classifyUnit)">{{ item.classifyUnit }}&emsp;{{ item.unitName }}</button>
+                    @click="switchModal(item.classify, item.classifyUnit)">{{ item.classifyUnit }}&emsp;{{ item.unitName
+                    }}</button>
             </li>
 
             <Modal v-if="isShow" @alertMessage="switchModal">
@@ -76,11 +79,11 @@ export default {
                     <p>單元名稱：{{ this.chName }}</p>
                     <p>題數&emsp;&emsp;：{{ this.chQuestionNum }}&emsp;題</p>
                     <p>考試時間：&thinsp;分</p>
-                    <p>扣分方式：一&thinsp;題&ensp;/&ensp;分</p>
+                    <p>扣分方式：一&thinsp;題&ensp;/一&ensp;分</p>
                     <div class="directionsBtnDiv">
                         <button type="button" class="btn btn-secondary" id="directionsBtn1" @click="switchModal">取消</button>
-                        <RouterLink to="/examPage"><button type="button" class="btn btn-primary"
-                                id="directionsBtn2">確定</button>
+                        <RouterLink to="/examPage">
+                            <button type="button" class="btn btn-primary" id="directionsBtn2" @click="this.catchBook(this.classify, this.chName)">確定</button>
                         </RouterLink>
                     </div>
                 </div>
@@ -91,15 +94,16 @@ export default {
 </template>
 
 <style lang="scss">
-#content{
+#content {
     width: 48vw;
     height: 48vh;
     display: flex;
     justify-content: center;
     align-items: start;
     flex-direction: column;
+    
 
-    .directionsBtnDiv{
+    .directionsBtnDiv {
         width: 48vw;
         height: 40px;
         display: flex;

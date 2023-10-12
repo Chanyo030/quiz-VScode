@@ -9,6 +9,7 @@ export default defineStore("quizChapter", {
         chQuestionNum: "",
         answer: "",
         quizTime: "",
+        comparisonQuestions:[],
         //      題目新增與管理
         allChapters: "",
         classifyArr: [], //  題本分類
@@ -120,6 +121,25 @@ export default defineStore("quizChapter", {
         makeCode(){
             this.questionCode = "";
             this.questionCode = this.firstCode + this.secondeCode;
+        },
+//      用於考試評分，先取章節題目資訊再逐一比對學生作答並結算
+        comparison(classify, unit){
+            let req = {
+                "classify":classify,
+                "classify-unit": unit
+            }
+            fetch("http://localhost:8080/api/get_question_Nums", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(req)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    this.comparisonQuestions = data;
+                })
+                .catch(error => console.log(error))
         }
     },
 });
