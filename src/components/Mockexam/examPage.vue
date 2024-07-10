@@ -14,7 +14,7 @@ export default {
             imformation: "",
             quizImg: [],
             comparisonQuestions: [],
-//!          學生作答需求的變數
+            //!          學生作答需求的變數
             studentAns: [],
             ansObject: {},
             ansSelect: [],
@@ -23,8 +23,8 @@ export default {
             showImg: "",
             startTime: "",
             endTime: "",
-//
-            modalOn:false,
+            //
+            modalOn: false,
 
         }
     },
@@ -39,11 +39,11 @@ export default {
     },
     methods: {
         ...mapActions(quizChapter, ["getQuizInfo"]),
-//      回首頁
+        //      回首頁
         doneAndHome() {
             this.$router.push('/studentIndex');
         },
-//      取得題目資訊
+        //      取得題目資訊
         getQuestions() {
             let req = {
                 "classify": this.bookClassify,
@@ -67,7 +67,7 @@ export default {
                 })
                 .catch(error => console.log(error))
         },
-//      根據題號顯示題目內容
+        //      根據題號顯示題目內容
         showContent(quizCode) {
             this.imformation = {};
             this.questionArr.forEach(item => {
@@ -99,7 +99,7 @@ export default {
 
 
         },
-//      將作答記錄起來
+        //      將作答記錄起來
         addStudentAns(classify, quizCode, ans) {
             let num = 0;
             let req = {
@@ -130,11 +130,11 @@ export default {
             }
 
         },
-//      單選答案送進專有陣列
+        //      單選答案送進專有陣列
         appendRadioAns(ans) {
             this.ansSelect.push(ans);
         },
-//      複選答案送進專有陣列
+        //      複選答案送進專有陣列
         appendCheckBoxAns(text, ans) {
             const target = document.getElementById(text);
             if (target.checked) {
@@ -145,13 +145,14 @@ export default {
                 this.pushArr.pop(ans);
             }
         },
-//      每一題送出答案
+        //      每一題送出答案
         submitAns(cla, code, ans) {
             let arrText = ans.join(",");
             const group = document.getElementsByName(code + "select");
             group.forEach(item => {
                 item.checked = false;
             })
+            console.dir(group)
             console.log(arrText);
             this.addStudentAns(cla, code, arrText);
             this.ansSelect = [];
@@ -162,9 +163,11 @@ export default {
             } else {
                 this.showContent(code + 1);
             }
-
+            if (this.questionArr[this.questionArr.length - 1] == code) {
+                this.modalOn = !this.modalOn
+            }
         },
-//      取得考試題目的程式碼(圖片)
+        //      取得考試題目的程式碼(圖片)
         getImgs() {
 
             let req = {
@@ -186,7 +189,7 @@ export default {
                 })
                 .catch(error => console.log(error))
         },
-//      考試結束並送出答案
+        //      考試結束並送出答案
         examEnd() {
             let score = 0;
             let wrongScore = 0;
@@ -213,8 +216,10 @@ export default {
 
             let startTimeText = this.startTime.getFullYear() + "-" + this.dataFormat(this.startTime.getMonth() + 1, this.startTime.getDate(), this.startTime.getHours(), this.startTime.getMinutes(), this.startTime.getSeconds());
 
-            let endTimeText = this.endTime.getFullYear() + "-" + this.dataFormat(this.endTime.getMonth() + 1, this.endTime.getDate(), this.startTime.getHours(), this.startTime.getMinutes(), this.startTime.getSeconds()); //!
-
+            let endTimeText = this.endTime.getFullYear() + "-" + this.dataFormat(this.endTime.getMonth() + 1, this.endTime.getDate(), this.endTime.getHours(), this.endTime.getMinutes(), this.endTime.getSeconds()); //!
+            // console.log(this.startTime)
+            console.log(startTimeText)
+            console.log(endTimeText)
             //          取出章節的所有題目及資訊
             if (this.studentAns.length !== this.comparisonQuestions.length) {
                 alert("考卷沒寫完")
@@ -232,6 +237,7 @@ export default {
                     }
                 })
             }
+
             let req = {
                 "studentScore": {
                     "studentId": this.showStudentId,                    //  學生ID      ( int )
@@ -244,7 +250,7 @@ export default {
                     "quizEndTime": endTimeText,                         //  作答結束時間 (LocalDateTime)
                     "studentQuizTime": examCostTime,                    //  學生作答時間 (LocalTime)
                     "score": score,                                     //  本次作答得分 (int)
-                    "pass": false,                                      //  是否及格     (boolean)
+                    "pass": false                                     //  是否及格     (boolean) 需要討論
                 }
             }
             console.log(req)
@@ -260,9 +266,9 @@ export default {
                     console.log(data)
                 })
                 .catch(error => console.log(error))
-                this.$router.push('/studentIndex')
+            this.$router.push('/studentIndex')
         },
-//      捕捉作答開始時間
+        //      捕捉作答開始時間
         examStart() {
             //!         時間
             let times = Date.now();
@@ -271,7 +277,7 @@ export default {
             this.modalOn = false;
 
         },
-//      取出要與學生答案比對的題目們
+        //      取出要與學生答案比對的題目們
         comparison(classify, unit) {
             let req = {
                 "classify": classify,
@@ -290,7 +296,7 @@ export default {
                 })
                 .catch(error => console.log(error))
         },
-//      結束作答的考試時間格式
+        //      結束作答的考試時間格式
         dataFormat(month, day, hours, min, sec) {
             if (month < 10) {
                 month = "0" + month;
@@ -311,7 +317,6 @@ export default {
             return timeGroup
         },
 
-
     },
     created() {
         this.getQuestions();
@@ -323,6 +328,9 @@ export default {
         },
         comparisonQuestions() {
             console.log(this.comparisonQuestions)
+        },
+        questionArr() {
+            console.log(this.questionArr)
         }
     },
     updated() {
@@ -425,7 +433,7 @@ export default {
             </div>
         </div>
         <Modal v-if="modalOn == true">
-            
+
         </Modal>
     </div>
 </template>

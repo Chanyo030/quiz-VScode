@@ -30,50 +30,48 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-
     // 不管滾輪用到哪裡，都會定在原地不動
     position: fixed;
     top: 0;
-    left: 0;
-    width: 200vw;
+    left: 2%;
+    width: 110vw;
     height: 100vh;
     display: flex;
     justify-content: center;
-    left: 90px;
     align-items: center;
     z-index: 1;
-}
 
-.modal {
-    width: 50vw;
-    height: 50vh;
-    background-color: white;
-    border-radius: 0.5rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    #manageIcon {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-    }
-
-    #modelTitle {
+    .modal {
+        width: 50vw;
+        height: 50vh;
+        background-color: white;
+        border-radius: 0.5rem;
         position: relative;
-        top: 2.6px;
-    }
-}
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-.bg {
-    position: absolute;
-    top: 0;
-    left: -90px;
-    width: inherit;
-    height: inherit;
-    background-color: black;
-    opacity: 0.1;
+        #manageIcon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        #modelTitle {
+            position: relative;
+            top: 2.6px;
+        }
+    }
+
+    .bg {
+        position: fixed;
+        top: 0;
+        // // left: -90px;
+        width: inherit;
+        height: inherit;
+        background: rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(2px);
+    }
 }
 </style>

@@ -5,7 +5,7 @@ import { setTransitionHooks } from "vue";
 import Footer from "../../components/Footer.vue";
 import Header from "../../components/Header.vue";
 import Modal from "../../components/Mockexam/Modal.vue";
-import { mapState,mapActions } from "pinia";
+import { mapState, mapActions } from "pinia";
 import LoginState from "../../stores/LoginState";
 
 
@@ -16,26 +16,25 @@ export default {
             studentId: "",
             studentPassword: "",
             studentName: "",
-            successfulMessage:false,
-            failMessage:false,
+            successfulMessage: false,
+            failMessage: false,
         }
     },
-    computed:{
-        ...mapState(LoginState,["showStudentName"])
+    computed: {
+        ...mapState(LoginState, ["showStudentName"])
     },
     methods: {
-        ...mapActions(LoginState,["getStudentInfo"]),
-        scesfulChange(){
+        ...mapActions(LoginState, ["getStudentInfo"]),
+        scesfulChange() {
             this.successfulMessage = !this.successfulMessage;
         },
-        failChange(){
+        failChange() {
             this.failMessage = !this.failMessage;
         },
         goBack() {
             this.$router.push("/")
         },
         Login() {
-            this.studentId = "0" + this.studentId;
             let loginInfo = {
                 "studentId": this.studentId,
                 "studentPwd": this.studentPassword,
@@ -57,9 +56,9 @@ export default {
 
                     if (data.message.includes("successful")) {
                         this.scesfulChange();
-                        sessionStorage.setItem("userId",JSON.stringify(this.studentId))
+                        sessionStorage.setItem("userId", JSON.stringify(this.studentId))
                         this.getStudentInfo(this.studentId)
-                    }else{
+                    } else {
                         this.failChange();
                     }
                 })
@@ -68,7 +67,7 @@ export default {
                 })
 
         },
-        LoginSuccessful(){
+        LoginSuccessful() {
             this.scesfulChange();
             this.$router.push("/studentIndex")
         }
@@ -81,8 +80,8 @@ export default {
     watch: {
         // studentId(){
         //     console.log(this.studentId);
-            // console.log(this.studentName);
-            // console.log(this.studentPassword);
+        // console.log(this.studentName);
+        // console.log(this.studentPassword);
         // }
     }
 }
@@ -100,7 +99,7 @@ export default {
             <div class="input-group mb-3 studentId">
                 <span class="input-group-text" id="basic-addon1">學號</span>
                 <input type="text" class="form-control" id="inputId" placeholder="ID" aria-label="UserId"
-                    aria-describedby="basic-addon1" v-model="studentId" >
+                    aria-describedby="basic-addon1" v-model="studentId">
             </div>
 
             <div class="input-group mb-3 studentPwd">
@@ -120,7 +119,7 @@ export default {
         </div>
 
         <Modal v-show="this.successfulMessage">
-            <h2 class="modalTitle">歡迎{{this.studentName}}學員</h2>
+            <h2 class="modalTitle">歡迎{{ this.studentName }}學員</h2>
             <button class="modalBtn" @click="LoginSuccessful">確定</button>
         </Modal>
         <Modal v-show="this.failMessage">
@@ -216,8 +215,7 @@ export default {
     top: 65px;
 }
 
-.modalBtn{
+.modalBtn {
     margin-top: 50px;
 }
-
 </style>

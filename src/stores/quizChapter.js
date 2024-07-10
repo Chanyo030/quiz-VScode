@@ -9,7 +9,7 @@ export default defineStore("quizChapter", {
         chQuestionNum: "",
         answer: "",
         quizTime: "",
-        comparisonQuestions:[],
+        comparisonQuestions: [],
         //      題目新增與管理
         allChapters: "",
         classifyArr: [], //  題本分類
@@ -96,8 +96,9 @@ export default defineStore("quizChapter", {
                 })
                 .catch((error) => console.log(error));
         },
-        getUnitQuestionNums(Unit) {
+        getUnitQuestionNums(classify,Unit) {
             let req = {
+                "classify":classify,
                 "classify-unit": Unit,
             };
             fetch("http://localhost:8080/api/get_question_Nums", {
@@ -112,20 +113,20 @@ export default defineStore("quizChapter", {
                     let questionNum = "0";
                     console.log(data);
                     this.chapterQuestionNums = data.questionAndAnswers;
-                    questionNum += (this.chapterQuestionNums.length+1);
+                    questionNum += (this.chapterQuestionNums.length + 1);
                     this.secondeCode = Unit.substr(2, 3) + questionNum;
                     this.makeCode()
                 })
                 .catch((error) => console.log(error));
         },
-        makeCode(){
+        makeCode() {
             this.questionCode = "";
             this.questionCode = this.firstCode + this.secondeCode;
         },
-//      用於考試評分，先取章節題目資訊再逐一比對學生作答並結算
-        comparison(classify, unit){
+        //      用於考試評分，先取章節題目資訊再逐一比對學生作答並結算
+        comparison(classify, unit) {
             let req = {
-                "classify":classify,
+                "classify": classify,
                 "classify-unit": unit
             }
             fetch("http://localhost:8080/api/get_question_Nums", {

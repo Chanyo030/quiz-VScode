@@ -96,7 +96,7 @@ export default {
                 <label for="">章節</label>
                 <select name="classifyUnit" id="quizClassifyUnit" v-model="this.QandAObject.classifyUnit"
                     :disabled="this.QandAObject.classify == ''"
-                    @change="getUnitQuestionNums(this.QandAObject.classifyUnit)">
+                    @change="getUnitQuestionNums(this.QandAObject.classify,     this.QandAObject.classifyUnit)">
                     <option value="">請選擇</option>
                     <option v-for="elements in classifyChapters" :value="elements.classifyUnit">
                         {{ elements.classifyUnit }}
@@ -109,7 +109,7 @@ export default {
                         <option value="" v-if="this.QandAObject.classifyUnit == ''">
                             題數
                         </option>
-                        <option :value="chapterQuestionNums.length + 1" v-if="this.QandAObject.classifyUnit !== ''">
+                        <option :value="chapterQuestionNums.length + 1" v-else>
                             {{ chapterQuestionNums.length + 1 }}
                         </option>
                     </select>

@@ -256,7 +256,7 @@ export default {
             padding-left: 1%;
             width: 100%;
             display: flex;
-            transition: 0.2s;
+            transition: all 0.2s;
         }
     }
 }

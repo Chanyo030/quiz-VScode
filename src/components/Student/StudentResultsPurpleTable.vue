@@ -1,4 +1,19 @@
-<script></script>
+<script>
+export default{
+    data(){
+        return{
+
+        }
+    },
+    computed:{
+        
+    },
+    methods:{
+        
+    }
+    
+}
+</script>
 <template>
     <div class="studentResultsPurpleTableDiv">
 
@@ -20,7 +35,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <th scope="row"></th>
+                    <th scope="row">5</th>
                     <td></td>
                     <td></td>
                     <td></td>

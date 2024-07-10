@@ -68,6 +68,7 @@ export default {
                 .then(data => {
                     console.log(data)
                     alert(data.message)
+                    this.$router.push("/studentIndex")
                 })
                 .catch(error => console.log(error))
         }
